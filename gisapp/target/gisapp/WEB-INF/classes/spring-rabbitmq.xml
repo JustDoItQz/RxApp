@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans.xsd
+	   http://www.springframework.org/schema/rabbit
+	   http://www.springframework.org/schema/rabbit/spring-rabbit.xsd
+       ">
+	<!--配置connection-factory，指定连接rabbit server参数 -->
+
+	<!--===============================start================================-->
+	<rabbit:connection-factory id="connectionFactory"
+							   username="${rabbitmq_username}" password="${rabbitmq_password}" host="${rabbitmq_host}" port="${rabbitmq_port}" />
+	<!--通过指定下面的admin信息，当前proceducer中的exchange和queue会在rabbitmq服务器上自动生成 -->
+	<rabbit:admin connection-factory="connectionFactory" id="amqpAdmin" />
+	<bean id="mqJsonConverter" class="org.common.com.utils.MqMessageJsonConvert"></bean>
+
+	<!--===============================end================================-->
+
+	<!--===============================start================================-->
+	<rabbit:queue id="Quenue_GIS_DB" name="Quenue_GIS_DB" durable="true" exclusive="false" auto-delete="false" />
+	<rabbit:queue id="Quenue_GIS_ES" name="Quenue_GIS_ES" durable="true" exclusive="false" auto-delete="false" />
+
+	<!--==============================Exchange dataout==========================-->
+	<rabbit:fanout-exchange name="GIS_data_out" id="GIS_data_out" auto-delete="false" durable="true">
+			<rabbit:bindings>
+				<rabbit:binding queue="Quenue_GIS_DB"/>
+				<rabbit:binding queue="Quenue_GIS_ES"/>
+			</rabbit:bindings>
+	</rabbit:fanout-exchange>
+
+	<!--init-->
+	<rabbit:template exchange="GIS_data_out" id="rabbitTemplate" connection-factory="connectionFactory" message-converter="mqJsonConverter"/>
+	<!--quenueListener-->
+	<bean id="initListener" class="org.gisoper.com.mq.AlarmQuenueListener"/>
+	<rabbit:listener-container connection-factory="connectionFactory" acknowledge="auto" auto-startup="true" prefetch="3" message-converter="mqJsonConverter" concurrency="2">
+		<rabbit:listener ref="initListener" queue-names="Quenue_GIS_DB" method="onMessageDB" />
+		<rabbit:listener ref="initListener" queue-names="Quenue_GIS_ES" method="onMessageES" />
+
+	</rabbit:listener-container>
+
+	<!--===============================end================================-->
+
+
+</beans>

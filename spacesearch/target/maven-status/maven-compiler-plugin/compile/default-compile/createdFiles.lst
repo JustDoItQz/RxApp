@@ -1,0 +1,6 @@
+org\es\com\controller\WebController.class
+org\es\com\utils\Constant.class
+org\es\com\controller\SpaceSearchController.class
+org\es\com\service\SpaceSearchService.class
+org\es\com\es\SpaceSearch.class
+org\es\com\utils\ESClient.class

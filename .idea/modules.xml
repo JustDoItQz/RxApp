@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gisapp/gisapp.iml" filepath="$PROJECT_DIR$/gisapp/gisapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gisoper/gisoper.iml" filepath="$PROJECT_DIR$/gisoper/gisoper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spacesearch/spacesearch.iml" filepath="$PROJECT_DIR$/spacesearch/spacesearch.iml" />
+    </modules>
+  </component>
+</project>

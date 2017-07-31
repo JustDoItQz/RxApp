@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="spacesearch:war">
+    <output-path>$PROJECT_DIR$/spacesearch/target</output-path>
+    <root id="archive" name="spacesearch.war">
+      <element id="artifact" artifact-name="spacesearch:war exploded" />
+    </root>
+  </artifact>
+</component>
