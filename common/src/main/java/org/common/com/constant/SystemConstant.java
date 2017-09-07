@@ -46,5 +46,9 @@ public class SystemConstant {
 			return "-1";
 		}
 	}
+	//获取SysCode
+	public static String getESB_ReqSysCode(){
+		return webProperties.getProperty("GIS_SYS_CODE").trim() ;
+	}
 
 }

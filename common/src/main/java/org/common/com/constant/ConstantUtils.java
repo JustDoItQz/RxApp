@@ -10,6 +10,12 @@ public class ConstantUtils {
 
     //高德行政区域查询
     public static final String ADDRESS_DISTRICT_URL_PREFIX = "http://restapi.amap.com/v3/config/district" ;
+    //批量调用高德接口
+    public static final String ADDRESS_BATCH_URL_PREFIX = "http://restapi.amap.com/v3/config/batch" ;
+    public static final String ADDRESS_DISTANCE_URL_PREFIX = "http://restapi.amap.com/v3/distance" ;
+    public static final String ADDRESS_TO_LOCATION_URL_PREFIX = "http://restapi.amap.com/v3/geocode/regeo" ;
+    public static final String ADDRESS_GEO = "/v3/geocode/geo" ;
+
     //腾讯地址库查询(街道)
     public static final String ADDRESS_TENGCENT_DISTRICT_URL_PREFIX = "http://apis.map.qq.com/ws/district/v1/getchildren" ;
     //地址库街道数据
@@ -67,6 +73,7 @@ public class ConstantUtils {
     public static final String FENCE_QUERYSTATUS="/querystatus" ;//查询监控对象在围栏内外
     public static final String FENCE_HISTORYALARM="/historyalarm" ;//查询监控对象的历史报警信息
     public static final String FENCE_BATCHHISTORYALARM="/batchhistoryalarm" ;//批量查询某service下时间段内的所有报警信息，用于服务端报警同步
+    public static final String vehicle_device_redis="vehicle_Device_" ;//设备信息
 
 
 
