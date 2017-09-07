@@ -7,6 +7,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
@@ -236,4 +237,32 @@ public class HttpclientUtil {
     //		String str= postForm(obj.toString());
     //		System.out.println(str);
     //	 }
+
+    public static String postJson(String url,String json){
+        CloseableHttpClient httpClient = HttpClients.createDefault() ;
+        HttpPost httpPost = new HttpPost(url) ;
+        httpPost.addHeader("Content-Type","application/json;charset=utf-8");
+        httpPost.addHeader("Accept","application/json");
+        StringEntity entity ;
+        String str = null ;
+        CloseableHttpResponse response = null ;
+        try{
+            entity = new StringEntity(json,"utf-8") ;
+            httpPost.setEntity(entity);
+            response = httpClient.execute(httpPost) ;
+                HttpEntity httpEntity = response.getEntity() ;
+                if (entity!=null){
+                    str = EntityUtils.toString(httpEntity,"utf-8") ;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            try {
+                response.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return str ;
+    }
 }
