@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="org.gisoper.com.mapper.TVehicleDeviceMapper" >
+    <resultMap id="BaseResultMap" type="org.gisoper.com.vo.TVehicleDevice">
+        <id column="id" property="id" jdbcType="VARCHAR"></id>
+        <result column="uploadName" property="uploadname" jdbcType="VARCHAR"/>
+        <result column="uploadType" property="uploadtype" jdbcType="VARCHAR"/>
+        <result column="precision" property="precision" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id,uploadName,uploadType,'precision'
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        t_vehicle_device
+        where
+        id=#{id,jdbcType=VARCHAR}
+    </select>
+    <insert id="insert" parameterType="org.gisoper.com.vo.TVehicleDevice" flushCache="true">
+        insert into t_vehicle_device (id,uploadName,uploadType,'precision')
+        values (#{id,jdbcType=VARCHAR},#{uploadname,jdbcType=VARCHAR},#{uploadtype,jdbcType=VARCHAR},#{precision,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="org.gisoper.com.vo.TVehicleDevice" flushCache="true">
+        insert into t_vehicle_device
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,uploadName,uploadType,'precision'
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{id,jdbcType=VARCHAR},#{uploadname,jdbcType=VARCHAR},#{uploadtype,jdbcType=VARCHAR},#{precision,jdbcType=VARCHAR},
+        </trim>
+
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="org.gisoper.com.vo.TVehicleDevice" flushCache="true">
+        update t_vehicle_device
+        <set>
+            <if test="uploadname!=null">
+                and uploadName=#{uploadname,jdbcType=VARCHAR}
+            </if>
+            <if test="uploadtype!=null">
+                and uploadType = #{uploadtype,jdbcType=VARCHAR}
+            </if>
+            <if test="precision!=null">
+                and 'precision' = #{precision,jdbcType=VARCHAR}
+            </if>
+        </set>
+        where id=#{id,jdbcType=VARCHAR}
+    </update>
+    <delete id="deleteByPrimaryKey" parameterType="map" flushCache="true">
+        delete from t_vehicle_device
+        where id=#{id,jdbcType=VARCHAR}
+    </delete>
+
+</mapper>
