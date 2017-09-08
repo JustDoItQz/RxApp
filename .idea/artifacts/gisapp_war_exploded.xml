@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="gisapp:war exploded">
-    <output-path>$PROJECT_DIR$/gisapp/target/gisapp</output-path>
+    <output-path>$PROJECT_DIR$/gisapp/src/main/webapp</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -146,7 +146,7 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/gisapp/target/gisapp/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/gisapp/src/main/webapp/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="gisapp/web/Web" />
     </root>

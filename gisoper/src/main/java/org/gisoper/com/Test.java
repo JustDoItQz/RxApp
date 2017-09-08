@@ -1,14 +1,13 @@
 package org.gisoper.com;
 
-import org.gisoper.com.mq.AlarmQuenueListener;
-import org.springframework.amqp.core.AmqpTemplate;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+import org.gisoper.com.vo.Account;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 /**
  * Created by on 2017/7/24.
  * Author Aaron.Wang
@@ -66,17 +65,71 @@ public class Test {
             }
         }*/
 
-       long currentTime = System.currentTimeMillis() ;
+       /*long currentTime = System.currentTimeMillis() ;
        long twoMinutes = currentTime-(2*60*1000) ;
        Date currentDate = new Date(currentTime) ;
        Date twoMinutesDate = new Date(twoMinutes) ;
        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); //设置时间格式
        String cuttentTimeStr = sdf.format(currentDate) ;
        String twoMinutesStr = sdf.format(twoMinutesDate) ;
-       System.out.println("当前时间："+cuttentTimeStr+"两分钟内："+twoMinutesStr);
+       System.out.println("当前时间："+cuttentTimeStr+"两分钟内："+twoMinutesStr);*/
 
+        /*SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmss"); //设置时间格式
+        String dateStr = sdf.format(new Date()) ;
+        Random random = new Random() ;
+        int lg=random.nextInt(100000000) ;
+        System.out.println("最后时间为："+dateStr+lg);*/
 
+        Map<String,Object> map = new HashMap<String,Object>() ;
+        Account account = new Account() ;
+        account.setAccount_number(1);
+        account.setAddress("汤泉国际");
+        account.setAge(12);
+        account.setBalance(59939494);
+        account.setCity("上海");
+        account.setEmail("123456@gmail.com");
+        account.setFirstname("hahahhah");
+        String str=JSONObject.fromObject(account).toString() ;
+        System.out.println("使用前=============="+str+"=================");
+        map.put("param",str) ;
+        JSONObject getStr = JSONObject.fromObject(map.get("param")) ;
+        Object[] header = getStr.keySet().toArray() ;
+        Object [] values = getStr.values().toArray() ;
+        for (int i=0;i<header.length;i++){
+            System.out.println("header="+header[i]);
+            System.out.println("values="+values[i]);
+        }
+        Account account1 = (Account) JSONObject.toBean(getStr,Account.class) ;
+        System.out.println("使用后=============="+account1.getAddress()+"=================");
 
+        List<JSONObject> list = new ArrayList<JSONObject>() ;
+        JSONObject object = new JSONObject() ;
+        JSONObject object1 = new JSONObject() ;
+        object.put("name","aaron") ;
+        object.put("password","123456") ;
+        object1.put("name","aaron2") ;
+        object1.put("password2","123456") ;
+        list.add(object) ;
+        list.add(object1) ;
+        Map<String,List<JSONObject>> map1 = new HashMap<String, List<JSONObject>>() ;
+        map1.put("data",list) ;
+        String result = JSONObject.fromObject(map1).toString() ;
+        System.out.println("包装后的值=============="+result+"=================");
 
+        Map<String,Object> mapVo = new HashMap<String, Object>() ;
+        Account accountVo = new Account() ;
+        accountVo.setFirstname("aaronwang");
+        accountVo.setEmail("123456@gmail.com");
+        accountVo.setCity("上海");
+        accountVo.setAccount_number(111111);
+        Account accountVo2 = new Account() ;
+        accountVo2.setFirstname("aaronwang");
+        accountVo2.setEmail("123456@gmail.com");
+        accountVo2.setCity("上海");
+        accountVo2.setAccount_number(111111);
+        mapVo.put("vo1",accountVo) ;
+        mapVo.put("vo2",accountVo2) ;
+        String accountResult = JSONObject.fromObject(mapVo).toString() ;
+        System.out.println("accountResult包装后的值=============="+accountResult+"=================");
     }
 }
