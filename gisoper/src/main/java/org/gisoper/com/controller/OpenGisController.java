@@ -220,6 +220,127 @@ public class OpenGisController {
 
     }
 
+    //车辆签到
+    @ResponseBody
+    @RequestMapping(value = "/signInVehicle",method = RequestMethod.POST)
+    public String signInVehicle(HttpServletRequest request){
+        Map<String,Object> logMap = new HashMap<String, Object>() ;
+        logMap.put("start","车辆网点签到开始！") ;
+        String data = null ;
+        boolean isAes = false ;
+
+        try{
+            if (EncryptionUtil.isAes(request.getParameter("data"))){
+                isAes = true ;
+                data = request.getParameter("data") ;
+            }else {
+                data = EncryptionUtil.setEncryption(request.getParameter("data")) ;
+            }
+            logger.info("车辆网点签到");
+        }catch (Exception e){
+            e.printStackTrace();
+            JSONObject result = new JSONObject() ;
+            result.put("msg","数据校验错误！");
+            result.put("suceess","false") ;
+            logger.error("网点签到失败:{},{}",e.getMessage(),result);
+        }
+        JSONObject object = JSONObject.fromObject(request.getParameter("data")) ;
+        String vehicleNo = object.getString("vehiclenum") ;
+        logMap.put("vehicleNo","车牌号为："+vehicleNo) ;
+        String id = object.getString("id") ;
+        logMap.put("arrivePointId","对应网点ID为："+id) ;
+        if (isAes){
+            return openGisService.signInVehicle(id,vehicleNo) ;
+        }else {
+            return EncryptionUtil.setEncryption(openGisService.signInVehicle(id,vehicleNo)) ;
+        }
+
+    }
+
+    //通过id删除车辆网点
+    @ResponseBody
+    @RequestMapping(value = "/deleteVehicleWebsiteESB",method = RequestMethod.POST)
+    public String deleteVehicleWebsiteESB(@RequestBody(required = false)String request){
+        String result = null ;
+        Map<String,Object> resultMap = new HashMap<String, Object>() ;
+        TypeToken<IDVo> typeToken = new TypeToken<IDVo>(){} ;
+        RequetESB<IDVo> requetESB = new RequetESB<IDVo>() ;
+        IDVo requestVo = new IDVo() ;
+        RequestHeader header = new RequestHeader() ;
+        try{
+            requetESB = ESBOper.getRequest(request,typeToken) ;
+            header = requetESB.getHeader() ;
+            requestVo = requetESB.getBody() ;
+            if (StringUtils.isNotBlank(requestVo.getId())){
+                result = openGisService.deleteVehicleWebsiteById(requestVo.getId()) ;
+            }else {
+                JSONObject jsonObject = new JSONObject() ;
+                jsonObject.put("success","false") ;
+                jsonObject.put("msg","网点ID不能为空！") ;
+                result = jsonObject.toString() ;
+                return ESBOper.returnResponseErr(header.getServiceCode(),header.getReqSysCode(),result,"") ;
+            }
+            return ESBOper.returnResponseSuccess(header.getServiceCode(),header.getReqSysCode(),result) ;
+        }catch (Exception e){
+            e.printStackTrace();
+            logger.error("{}删除网点失败,{}",requestVo.getId(),e.getMessage());
+            return ESBOper.returnResponseErr(header.getServiceCode(),e.getMessage()) ;
+        }
+    }
+
+    //电子围栏
+    @ResponseBody
+    @RequestMapping(value = "/insertVehicleWebsiteESB",method = RequestMethod.POST)
+    public String insertVehicleWebsiteESB(@RequestBody(required = false)String request){
+
+        String result = null ;
+        JSONObject object = new JSONObject() ;
+        TypeToken<TVehicleWebsite> typeToken = new TypeToken<TVehicleWebsite>(){} ;
+        RequetESB<TVehicleWebsite> requetESB = new RequetESB<TVehicleWebsite>() ;
+        TVehicleWebsite requestVo = new TVehicleWebsite() ;
+        RequestHeader header = new RequestHeader() ;
+        try{
+            requetESB = ESBOper.getRequest(request,typeToken) ;
+            header = requetESB.getHeader() ;
+            requestVo = requetESB.getBody() ;
+            if (StringUtils.isNotBlank(requestVo.getId())){
+                result = openGisService.insertVehicleWebsite(requestVo) ;
+            }else {
+                object.put("success","网点ID不能为空") ;
+                object.put("msg","网点ID不能为空") ;
+                result = object.toString() ;
+                return ESBOper.returnResponseErr(header.getServiceCode(),header.getReqSysCode(),result,"") ;
+            }
+            return ESBOper.returnResponseSuccess(header.getServiceCode(),header.getReqSysCode(),result) ;
+        }catch (Exception e){
+            e.printStackTrace();
+            logger.error("增加电子围栏失败,{}",e.getMessage());
+            return ESBOper.returnResponseErr(header.getServiceCode(),header.getReqSysCode(),result,"") ;
+        }
+    }
+
+    //网点初始化
+    @ResponseBody
+    @RequestMapping(value = "/initWebsiteESB")
+    public String initWebsiteESB(@RequestBody(required = false)String request){
+        String result = "" ;
+        try{
+            synchronized (this){
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        openGisService.initWebsite();
+                    }
+                }).start();
+            }
+        }catch (Exception e){
+
+        }
+
+        return result ;
+    }
+
+
     protected Object parseToObj(String data,Class<?> clazz){
         Object obj = new Object() ;
         if (null!=data){
