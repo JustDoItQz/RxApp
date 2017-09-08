@@ -2,7 +2,6 @@ package org.gisoper.com.service;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-import org.apache.commons.lang.StringUtils;
 import org.common.com.constant.ConstantUtils;
 import org.common.com.constant.SystemConstant;
 import org.common.com.utils.HttpclientUtil;
@@ -118,5 +117,6 @@ public class GisOperService {
         }
         return beanDistanceVos ;
     }
+
 
 }
