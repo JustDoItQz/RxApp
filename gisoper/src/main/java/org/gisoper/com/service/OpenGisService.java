@@ -1,5 +1,6 @@
 package org.gisoper.com.service;
 
+import com.google.gson.reflect.TypeToken;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.common.com.constant.ConstantUtils;
@@ -9,6 +10,7 @@ import org.common.com.redis.RedisOper;
 import org.common.com.utils.DateUtils;
 import org.common.com.utils.ESBOper;
 import org.common.com.utils.HttpclientUtil;
+import org.common.com.utils.ResponseESB;
 import org.gisoper.com.vo.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +21,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static org.common.com.constant.ConstantUtils.VEHICLE_WEBSITE_DELETE_PREFIX;
 
 @Service
 public class OpenGisService {
@@ -206,8 +210,201 @@ public class OpenGisService {
         return result.toString() ;
     }
 
+    public String signInVehicle(String arrivePointId,String vehicleNo){
 
+        JSONObject result = new JSONObject() ;
+        Map<String,String> logMap = new HashMap<String, String>() ;
+        logger.info("车辆网点开始签到");
+        try{
+            Map<String,Object> map = new HashMap<String, Object>() ;
+            map.put("arrivePointId",arrivePointId) ;
+            map.put("vehicleNo",vehicleNo) ;
+            String str = ESBOper.callESB("TMS_S_SIGNUP","S25",map) ;
+            JSONObject object = JSONObject.fromObject(str) ;
+            if (object.getBoolean("body")==true){
+                result.put("succes","true") ;
+                result.put("msg","车牌号："+vehicleNo+"签到成功,签到网点"+arrivePointId) ;
+                logMap.put("车辆签到","车牌号："+vehicleNo+"签到成功,签到网点"+arrivePointId) ;
+            }else {
+                result.put("succes","false") ;
+                result.put("msg","车牌号："+vehicleNo+"签到失败,签到网点"+arrivePointId) ;
+                logMap.put("车辆签到","车牌号："+vehicleNo+"签到失败,签到网点"+arrivePointId) ;
+            }
+            result.put("msgcode","") ;
+            result.put("message",str) ;
 
+        }catch (Exception e){
+            e.printStackTrace();
+            result.put("success","false") ;
+            result.put("msg","车牌号："+vehicleNo+"签到失败,签到网点"+arrivePointId) ;
+            logger.info("车牌号：{}签到失败,签到网点{}，{}",vehicleNo,arrivePointId,e.getMessage());
+        }
+
+        return result.toString() ;
+    }
+    public String deleteVehicleWebsiteById(String websiteId){
+        Map<String,String> param = new HashMap<String,String>() ;
+        Map<String,String> logMap = new HashMap<String, String>() ;
+        JSONObject result = new JSONObject() ;
+        try{
+            param.put("id",websiteId) ;
+            String str = HttpclientUtil.postMSG(param,ConstantUtils.VEHICLE_WEBSITE_DELETE_PREFIX) ;
+            logger.info("删除电子围栏","删除"+websiteId+"上传到高德地图");
+            logMap.put("删除电子围栏","删除"+websiteId+"上传到高德地图") ;
+            JSONObject jsonObject = JSONObject.fromObject(str) ;
+            ResultVo resultVo = (ResultVo)JSONObject.toBean(jsonObject,ResultVo.class) ;
+            if (resultVo.getMsg().equals("success")){
+                myBatisDao.delete("org.gisoper.com.mapper.TVehicleWebsiteMapper.deleteWebsitById",websiteId);//从数据库删除数据
+            }else{
+                param.put("opearType","D") ;
+                param.put("opearStatus","0") ;
+                myBatisDao.update("org.gisoper.com.mapper.TVehicleWebsiteMapper,updateOperatStatePrimaryKey",param);
+            }
+            result.put("success","true") ;
+            result.put("msgcode","") ;
+            result.put("msg",websiteId+"删除网点成功！") ;
+            logMap.put("提示",websiteId+"网点删除成功!") ;
+        }catch (Exception e){
+            e.printStackTrace();
+            result.put("success","false") ;
+            result.put("msg",websiteId+"网点删除失败！") ;
+            logger.error(websiteId+"删除网点信息失败,{},{},",e,logMap);
+        }
+
+        return result.toString() ;
+    }
+    public String insertVehicleWebsite(TVehicleWebsite vehicleWebsite){
+        JSONObject result = new JSONObject() ;
+        Map<String,String> param = new HashMap<String, String>() ;
+        try{
+            TVehicleWebsite website = new TVehicleWebsite() ;
+            if (vehicleWebsite.getWebsiteType()!=null&&vehicleWebsite.getWebsiteType().equals("")){
+                website.setWebsiteType(vehicleWebsite.getWebsiteType());
+            }else {
+                result.put("msg","网点类型不能为空") ;
+                result.put("success","false") ;
+                return result.toString() ;
+            }
+            if (vehicleWebsite.getLat()!=null&&vehicleWebsite.getLat().equals("")&&
+                    vehicleWebsite.getLng()!=null&&vehicleWebsite.getLng().equals("")){
+
+            }else {
+                result.put("success","false") ;
+                result.put("msg","网点的经纬度不能为空") ;
+                return result.toString() ;
+            }
+            TVehicleWebsite tVehicleWebsite = myBatisDao.get("",vehicleWebsite.getId()) ;
+
+            //新增网点信息上传es
+            JSONObject data = JSONObject.fromObject(website) ;
+            param.put("geodata",data.toString()) ;
+            String str = HttpclientUtil.postMSG(param,"") ;
+            JSONObject jsonObject = JSONObject.fromObject(str) ;
+            String status = null  ;
+            if (jsonObject!=null&&jsonObject.equals("")){
+                status=jsonObject.getString("status") ;
+                if (status.equals("success")){
+                    website.setOperStatus("1");
+                }else {
+                    website.setOperStatus("0");
+                }
+            }
+
+            if (tVehicleWebsite!=null){
+                website.setOperType("U");
+                myBatisDao.update("执行更新操作",website);
+            }else {
+                website.setOperType("A");
+                myBatisDao.save("重新保存",website);
+            }
+            result.put("success","true") ;
+            result.put("msg",vehicleWebsite.getWebsitName()+"保存成功") ;
+
+        }catch (Exception e){
+            e.printStackTrace();
+            result.put("msg","网点保存失败") ;
+            result.put("success","false") ;
+            logger.error("网点信息保存失败,{}",e.getMessage());
+        }
+        return result.toString() ;
+    }
+
+    public void initWebsite(){
+        saveWebsite();
+
+    }
+
+    public void saveWebsite(){
+        List<TVehicleWebsite> listESB = getALlWebsite() ;
+        Map<String,TVehicleWebsite> mapESB = findAllDBWebsite() ;
+        List<TVehicleWebsite> updateWebsite = new ArrayList<TVehicleWebsite>() ;
+        List<TVehicleWebsite> addWebsite = new ArrayList<TVehicleWebsite>() ;
+        Map<String,TVehicleWebsite> websiteMap = new HashMap<String, TVehicleWebsite>() ;
+        List<String> deleteWebsite = new ArrayList<String>() ;
+        if (listESB!=null&&listESB.size()>0){
+            for (TVehicleWebsite vehicleWebsite:listESB){
+                if (mapESB.containsKey(vehicleWebsite.getId())){
+                    if (isCompareWebsite(vehicleWebsite,mapESB.get(vehicleWebsite.getId()))){
+                        vehicleWebsite.setOperType("U");
+                        updateWebsite.add(vehicleWebsite) ;//需更新
+                    }else {
+                        vehicleWebsite.setOperType("A");
+                        addWebsite.add(vehicleWebsite) ;
+                    }
+                }
+                websiteMap.put(vehicleWebsite.getId(),vehicleWebsite) ;
+            }
+
+            //遍历esb中的数据
+            for (Map.Entry<String,TVehicleWebsite> entry:websiteMap.entrySet()){
+                if (!websiteMap.containsKey(entry.getKey())){
+                    deleteWebsite.add(entry.getKey()) ;
+                }
+            }
+            //执行新增操作
+            if (addWebsite!=null&&addWebsite.size()>0){
+               websiteInit(addWebsite,"A");
+            }
+            //执行更新操作
+            if (updateWebsite!=null&&updateWebsite.size()>0){
+                websiteInit(updateWebsite,"U");
+            }
+            //执行删除操作
+            if (deleteWebsite!=null&&deleteWebsite.size()>0){
+                websiteDelete(deleteWebsite,"D");
+            }
+        }
+
+    }
+    public List<TVehicleWebsite> getALlWebsite(){
+        List<TVehicleWebsite> list = new ArrayList<TVehicleWebsite>() ;
+        String str = ESBOper.callESB("","","") ;
+        TypeToken<List<TVehicleWebsite>> token = new TypeToken<List<TVehicleWebsite>>(){} ;
+        ResponseESB<List<TVehicleWebsite>> responseESB = ESBOper.getResponseESB(str,token) ;
+        list = responseESB.getBody() ;
+        return list ;
+    }
+    public Map<String,TVehicleWebsite> findAllDBWebsite(){
+        Map<String,TVehicleWebsite> tVehicleWebsiteMap = new HashMap<String, TVehicleWebsite>() ;
+        List<TVehicleWebsite> vehicleWebsites = myBatisDao.getList("") ;
+        if (vehicleWebsites!=null&&vehicleWebsites.size()>0){
+            for (TVehicleWebsite vehicleWebsite:vehicleWebsites){
+                tVehicleWebsiteMap.put(vehicleWebsite.getId(),vehicleWebsite) ;
+            }
+        }
+        return tVehicleWebsiteMap ;
+    }
+    public boolean isCompareWebsite(TVehicleWebsite vehicleWebsite,TVehicleWebsite tVehicleWebsite){
+        boolean isTrue = true ;
+
+        return isTrue ;
+    }
+    public void websiteInit(List<TVehicleWebsite> vehicleWebsites,String type){
+
+    }
+    public void websiteDelete(List<String> deleteList,String type){
+
+    }
 
 
 }
