@@ -336,10 +336,8 @@ public class OpenGisController {
         }catch (Exception e){
 
         }
-
         return result ;
     }
-
 
     protected Object parseToObj(String data,Class<?> clazz){
         Object obj = new Object() ;
