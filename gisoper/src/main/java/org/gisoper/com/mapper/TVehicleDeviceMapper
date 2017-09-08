@@ -19,7 +19,7 @@
         id=#{id,jdbcType=VARCHAR}
     </select>
     <insert id="insert" parameterType="org.gisoper.com.vo.TVehicleDevice" flushCache="true">
-        insert into t_vehicle_device (id,uploadName,uploadType,'precision')
+        insert into t_vehicle_website (id,uploadName,uploadType,'precision')
         values (#{id,jdbcType=VARCHAR},#{uploadname,jdbcType=VARCHAR},#{uploadtype,jdbcType=VARCHAR},#{precision,jdbcType=VARCHAR})
     </insert>
     <insert id="insertSelective" parameterType="org.gisoper.com.vo.TVehicleDevice" flushCache="true">
@@ -33,7 +33,7 @@
 
     </insert>
     <update id="updateByPrimaryKey" parameterType="org.gisoper.com.vo.TVehicleDevice" flushCache="true">
-        update t_vehicle_device
+        update t_vehicle_website
         <set>
             <if test="uploadname!=null">
                 and uploadName=#{uploadname,jdbcType=VARCHAR}
@@ -48,8 +48,9 @@
         where id=#{id,jdbcType=VARCHAR}
     </update>
     <delete id="deleteByPrimaryKey" parameterType="map" flushCache="true">
-        delete from t_vehicle_device
+        delete from t_vehicle_website
         where id=#{id,jdbcType=VARCHAR}
     </delete>
+
 
 </mapper>
