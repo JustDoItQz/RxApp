@@ -1,3 +1,4 @@
+org\common\com\utils\MapDistance.class
 cn\jpush\api\push\model\Options.class
 cn\jpush\api\schedule\ScheduleResult.class
 cn\jpush\api\report\ReceivedsResult$Received.class

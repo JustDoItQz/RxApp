@@ -1,14 +1,20 @@
 package org.gisoper.com.service;
 
+import org.apache.commons.lang.StringUtils;
+import org.common.com.utils.MapDistance;
 import org.gisoper.com.vo.LoadBillVo;
 import org.gisoper.com.vo.VehiclePosition;
 import org.gisoper.com.vo.WebsitePointVo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
 public class FenceService {
+
+    private static Logger logger = LoggerFactory.getLogger(FenceService.class) ;
 
     public void triggerFence(){
 
@@ -25,8 +31,34 @@ public class FenceService {
                     String departurePointId = loadBillVo.getDeparturePointId() ;
                     WebsitePointVo pointVo = getWebsitePoint(websitePointVoList,departurePointId) ;
                     Map<String,Object> map = istrigger(listVehicleOnly,pointVo,1) ;
+                    boolean isTrigger = (Boolean) map.get("isTrigger") ;
+                    String triggerTime = (String) map.get("triggerTime") ;
+                    String vehiclePhone = (String) map.get("vehiclePhone") ;
+                    String vehicleNum = (String) map.get("vehicleNum") ;
+                    if (isTrigger){
+                        //保存到数据库
+                        Map<String,String> mapTrigger = new HashMap<String, String>() ;
+                        mapTrigger = sendFence(loadId,departurePointId,triggerTime) ;
+                        saveDBLog(mapTrigger,1,vehicleNum,vehiclePhone) ;//保存到数据库
+                    }
                 }else if (status.equals("13")){//触发签到
-
+                    List<String> list_point = loadBillVo.getArrivePointId() ;
+                    if (list_point!=null&&list_point.size()>0){
+                        for (String arrivePointId:list_point){
+                            WebsitePointVo websitePointVo = getWebsitePoint(websitePointVoList,arrivePointId) ;
+                            Map<String,Object> map = istrigger(listVehicleOnly,websitePointVo,2) ;
+                            boolean isTrigger = (Boolean) map.get("isTrigger") ;
+                            String triggerTime = (String) map.get("triggerTime") ;
+                            String vehiclePhone = (String) map.get("vehiclePhone") ;
+                            String vehicleNum = (String) map.get("vehicleNum") ;
+                            if (isTrigger){
+                                //保存到数据库
+                                Map<String,String> mapTrigger = new HashMap<String, String>() ;
+                                mapTrigger = fenceSign(loadId,arrivePointId,triggerTime) ;
+                                saveDBLog(mapTrigger,2,vehicleNum,vehiclePhone);
+                            }
+                        }
+                    }
                 }
             }catch (Exception e){
                 continue;
@@ -79,6 +111,93 @@ public class FenceService {
     }
     public Map<String,Object> istrigger(List<VehiclePosition> list, WebsitePointVo pointVo, int type){
         Map<String,Object> map = new HashMap<String, Object>() ;
+        boolean isTrigger= false ;
+        String triggerTime ="" ;
+        String vehicleNum = "" ;
+        String vehiclePhone = "" ;
+        map.put("isTrigger",isTrigger) ;
+        map.put("triggerTime",triggerTime) ;
+        if (pointVo==null){
+            return map ;
+        }
+
+        String lat1 = pointVo.getLat() ;
+        String lng1 = pointVo.getLng() ;
+        String lat2 = pointVo.getLat2() ;
+        String lng2 = pointVo.getLng2() ;
+
+        boolean flag1 = false ;
+        boolean flag2 = false ;
+        String lat1Str = "" ;
+        String lng1Str = "" ;
+
+        if (StringUtils.isNotBlank(lat1)&&StringUtils.isNotBlank(lng1)&&lat1!="0"&&lng1!="0"){
+            flag1 = true ;
+        }
+        if (StringUtils.isNotBlank(lat2)&&StringUtils.isNotBlank(lng2)&&lat2!="0"&&lat2!="0"){
+            flag2 = true ;
+        }
+        if (flag1==false&&flag2==false){
+            return map ;
+        }
+
+        if (flag2){
+            lat1Str = lat2 ;
+            lng1Str = lng2 ;
+        }else{
+            lat1Str = lat1 ;
+            lng1Str = lng1 ;
+        }
+        double radius = 1 ;//触发区域半径1 km
+        if (pointVo.getWebsiteType()==14){//枢纽类型
+            radius = 2 ;
+        }
+        if (type==1||type==2){
+            for (VehiclePosition vehiclePosition:list){
+                String lat2Str = vehiclePosition.getVahiclelat() ;
+                String lng2Str = vehiclePosition.getVahiclelng() ;
+                double distance = MapDistance.GetDistance(lng1Str,lat1Str,lat2Str,lng2Str) ;
+                if (type==1){//发车
+                    if (distance>=radius){
+                        isTrigger=true ;
+                        triggerTime = vehiclePosition.getVahicletime() ;
+                        vehiclePhone = vehiclePosition.getVehiclephone() ;
+                        vehicleNum = vehiclePosition.getVehiclenum() ;
+                        break;
+                    }
+                }else if (type==2){
+                    if (distance<=radius){
+                        isTrigger = true ;
+                        triggerTime = vehiclePosition.getVahicletime() ;
+                        vehiclePhone = vehiclePosition.getVehiclephone() ;
+                        vehicleNum = vehiclePosition.getVehiclenum() ;
+                        break;
+                    }
+                }
+            }
+
+        }else {
+            return map ;
+        }
+
+        logger.info("是否触发：{}",isTrigger);
+        map.put("isTrigger",isTrigger) ;
+        map.put("triggerTime",triggerTime) ;
+        map.put("vehiclePhone",vehiclePhone) ;
+        map.put("vehicleNum",vehicleNum) ;
+
+        return map ;
+    }
+    public Map<String,String> sendFence(String loadId,String departurePointId,String triggerTime){
+        Map<String,String> map = new HashMap<String, String>() ;
+
+        return map ;
+    }
+    public void saveDBLog(Map<String,String> map,int type,String vehicleNum,String vehicelPhone){
+
+    }
+    public Map<String,String> fenceSign(String loadId,String arrivePonitId,String triggerTime){
+        Map<String,String> map = new HashMap<String, String>() ;
 
         return map ;
     }
