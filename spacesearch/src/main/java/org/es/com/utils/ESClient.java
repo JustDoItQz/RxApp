@@ -13,7 +13,7 @@ import java.net.UnknownHostException;
  * Created by on 2017/6/26.
  * Author Aaron.Wang
  */
-public class ESClient {
+public  abstract class ESClient {
     private static Client client ;
 
     static {
@@ -24,7 +24,7 @@ public class ESClient {
 
         TransportClient transportClient = new PreBuiltTransportClient(settings) ;
         try {
-            transportClient.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("127.0.0.1"),9300)) ;
+            transportClient.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("192.168.2.86"),9300)) ;
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }

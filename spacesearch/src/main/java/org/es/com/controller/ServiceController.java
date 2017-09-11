@@ -95,6 +95,14 @@ public class ServiceController {
         return new ResponseEntity<String>(result.toString(),headers,HttpStatus.OK) ;
     }
 
+    @RequestMapping("/deleteWebsiteById.do")
+    public ResponseEntity<String> deleteWebsiteById(){
+        String result = null ;
+        HttpHeaders headers = new HttpHeaders() ;
+        headers.set("Content-Type","application/json;charset=utf-8");
+
+        return new ResponseEntity<String>(result,headers,HttpStatus.OK) ;
+    }
 
 
 }

@@ -73,7 +73,13 @@ public class ConstantUtils {
     public static final String FENCE_QUERYSTATUS="/querystatus" ;//查询监控对象在围栏内外
     public static final String FENCE_HISTORYALARM="/historyalarm" ;//查询监控对象的历史报警信息
     public static final String FENCE_BATCHHISTORYALARM="/batchhistoryalarm" ;//批量查询某service下时间段内的所有报警信息，用于服务端报警同步
+
+    /*redis储存信息*/
     public static final String vehicle_device_redis="vehicle_Device_" ;//设备信息
+
+    /*es标准接口*/
+    public static final String VEHICLE_WEBSITE_DELETE_PREFIX = SystemConstant.getESB_URL()+"spacesearch/service/deleteWebsiteById.do" ;
+
 
 
 
