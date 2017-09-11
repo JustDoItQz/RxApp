@@ -324,7 +324,8 @@ public class OpenGisController {
     @RequestMapping(value = "/initWebsiteESB")
     public String initWebsiteESB(@RequestBody(required = false)String request){
         String result = "" ;
-        try{
+        String serviceCode = ""
+ ;        try{
             synchronized (this){
                 new Thread(new Runnable() {
                     @Override
@@ -333,10 +334,11 @@ public class OpenGisController {
                     }
                 }).start();
             }
+            return ESBOper.returnResponseSuccess(serviceCode,"true") ;
         }catch (Exception e){
-
+            e.printStackTrace();
+            return ESBOper.returnResponseErr(serviceCode,e.getMessage()) ;
         }
-        return result ;
     }
 
     protected Object parseToObj(String data,Class<?> clazz){
