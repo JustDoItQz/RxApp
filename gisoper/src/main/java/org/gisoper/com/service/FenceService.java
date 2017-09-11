@@ -1,12 +1,16 @@
 package org.gisoper.com.service;
 
 import org.apache.commons.lang.StringUtils;
+import org.common.com.dao.MyBatisDao;
+import org.common.com.utils.DateUtils;
 import org.common.com.utils.MapDistance;
 import org.gisoper.com.vo.LoadBillVo;
+import org.gisoper.com.vo.TriggerLog;
 import org.gisoper.com.vo.VehiclePosition;
 import org.gisoper.com.vo.WebsitePointVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -15,6 +19,9 @@ import java.util.*;
 public class FenceService {
 
     private static Logger logger = LoggerFactory.getLogger(FenceService.class) ;
+
+    @Autowired
+    private MyBatisDao myBatisDao ;
 
     public void triggerFence(){
 
@@ -65,8 +72,37 @@ public class FenceService {
             }
 
         }
+        System.out.println("--------------------------电子围栏end------------------------------");
 
     }
+
+    public void fenceCompensate(){
+        Map<String,String> map = new HashMap<String, String>() ;
+        List<TriggerLog> list = getByStatusAndTimes(2,3) ;
+        for (TriggerLog log:list){
+            try{
+                int type = log.getTriggerType() ;
+                String loadingId = log.getLoadingId() ;
+                String routeId = log.getRouteId() ;
+                String triggerTime = DateUtils.convert(log.getTriggerTime()) ;
+                if (type==1){
+                    map = sendFence(loadingId,routeId,triggerTime) ;
+                }else {
+                    map = fenceSign(loadingId,routeId,triggerTime) ;
+                }
+                int times = log.getTimes()+1 ;
+                int triggerStatus = Integer.parseInt(map.get("triggerStatus")) ;
+                log.setTimes(times);
+                log.setTriggerStatus(triggerStatus);
+                log.setLasteTime(new Date());
+                triggerStatusUpdate(log);
+            }catch (Exception e){
+                continue;
+            }
+        }
+        System.out.println("------------电子围栏补偿机制执行结束-------------");
+    }
+
     public List<VehiclePosition> getVehiclePhsition(){
         List<VehiclePosition> list = new ArrayList<VehiclePosition>() ;
 
@@ -200,6 +236,20 @@ public class FenceService {
         Map<String,String> map = new HashMap<String, String>() ;
 
         return map ;
+    }
+    private List<TriggerLog> getByStatusAndTimes(int status,int times){
+        List<TriggerLog> logList = new ArrayList<TriggerLog>() ;
+        Map<String,Object> map = new HashMap<String, Object>() ;
+        map.put("triggerStatus",status) ;
+        map.put("times",times) ;
+        logList = myBatisDao.getList("","") ;
+
+        return logList ;
+    }
+
+    private void triggerStatusUpdate(TriggerLog triggerLog){
+
+        myBatisDao.update("",triggerLog);
     }
 
 
