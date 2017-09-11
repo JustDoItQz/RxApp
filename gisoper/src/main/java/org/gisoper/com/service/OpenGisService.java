@@ -3,6 +3,7 @@ package org.gisoper.com.service;
 import com.google.gson.reflect.TypeToken;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import org.apache.commons.lang.StringUtils;
 import org.common.com.constant.ConstantUtils;
 import org.common.com.constant.SystemConstant;
 import org.common.com.dao.MyBatisDao;
@@ -406,5 +407,53 @@ public class OpenGisService {
 
     }
 
+    public RouteDriverVo.Response antoRouteDriver(RouteDriverVo.Request request){
+        RouteDriverVo.Response response = new RouteDriverVo.Response() ;
+        try{
+            String gisId = DateUtils.nextSequence() ;
+            response.setGisId(gisId);
+            //RouteDriverVo.Response routeDriverVo = addressInfos(s)
+
+        }catch (Exception e){
+
+        }
+        return response ;
+
+    }
+    public RouteDriverVo.Response addInfoList(RouteDriverVo.Request requestVo,RouteDriverVo.Response response){
+        List<String> errorAddressInfoVos = new ArrayList<String>() ;
+        AddressInfoCapaVo startAddress = requestVo.getStartAddress() ;
+        if (startAddress!=null&&StringUtils.isNotBlank(startAddress.getDetail())){
+            AddressInfoVo startInfoVo = addressInfos(startAddress) ;
+        }
+        return null ;
+
+    }
+
+    public AddressInfoVo addressInfos(AddressInfoCapaVo infoCapaVo){
+        AddressInfoVo addressInfoVo = new AddressInfoVo() ;
+        Map<String,String> param = new HashMap<String, String>() ;
+        param.put("key",SystemConstant.getGAODE_KEY()) ;
+        param.put("address",infoCapaVo.getDetail()) ;
+        if (StringUtils.isNotBlank(infoCapaVo.getCityName())){
+            param.put("city",infoCapaVo.getCityName()) ;
+        }
+        param.put("output","json") ;
+        String result = HttpclientUtil.postMSG(param,"") ;
+        JSONObject object = JSONObject.fromObject(result) ;
+        try{
+            if (object.containsKey("geocodes")){
+                JSONArray array = object.getJSONArray("geocodes") ;
+                StringBuilder sb = new StringBuilder() ;
+                JSONObject geocode = (JSONObject) array.get(0) ;
+
+
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return addressInfoVo ;
+    }
 
 }

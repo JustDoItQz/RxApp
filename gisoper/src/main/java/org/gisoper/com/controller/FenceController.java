@@ -15,6 +15,7 @@ public class FenceController {
     @Autowired
     private FenceService fenceService ;
 
+    //电子围栏定时任务
     @ResponseBody
     @RequestMapping("/fence")
     public String fence(@RequestBody(required = false)String request){
@@ -29,6 +30,21 @@ public class FenceController {
 
         }
 
+    }
+
+    //电子围栏补偿机制
+    @ResponseBody
+    @RequestMapping("/fenceCompensate")
+    public String fenceCompensate(@RequestBody(required = false)String request){
+
+        String serviceCode="" ;
+        try{
+            fenceService.fenceCompensate() ;
+            return ESBOper.returnResponseSuccess(serviceCode,"true") ;
+        }catch (Exception e){
+            e.printStackTrace();
+            return ESBOper.returnResponseErr(serviceCode,"false") ;
+        }
     }
 
 }
