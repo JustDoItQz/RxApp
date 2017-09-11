@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="org.gisoper.com.mapper.TVehicleWebsiteMapper" >
+    <resultMap id="BaseResultMap" type="org.gisoper.com.vo.TVehicleWebsite">
+        <id column="id" property="id" jdbcType="VARCHAR"></id>
+        <result column="websiteName" property="websitName" jdbcType="VARCHAR"/>
+        <result column="websiteDetail" property="websitDetail" jdbcType="VARCHAR"/>
+        <result column="contact" property="contact" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="plane" property="plane" jdbcType="VARCHAR"/>
+        <result column="lat" property="lat" jdbcType="DOUBLE"/>
+        <result column="lng" property="lng" jdbcType="DOUBLE"/>
+        <result column="websiteTime" property="websiteTime" jdbcType="TIMESTAMP"/>
+        <result column="opearType" property="operType" jdbcType="VARCHAR"/>
+        <result column="websiteTimeStr" property="websiteTimeStr" jdbcType="VARCHAR"/>
+        <result column="opearState" property="operStatus" jdbcType="VARCHAR"/>
+        <result column="latest_time" property="lastTime" jdbcType="TIMESTAMP"/>
+        <result column="websiteType" property="websiteType" jdbcType="VARCHAR"/>
+        <result column="companyName" property="companyName" jdbcType="VARCHAR"/>
+        <result column="province" property="province" jdbcType="VARCHAR"/>
+        <result column="city" property="city" jdbcType="VARCHAR"/>
+        <result column="area" property="area" jdbcType="VARCHAR"/>
+        <result column="areacode" property="areaCode" jdbcType="VARCHAR"/>
+        <result column="total" property="total" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id,websiteName,websiteDetail,contact,phone,lat,lng.websiteTime,opearType,opearState,latest_time,websiteType,companyName,province,city,area,areacode
+    </sql>
+    <sql id="Base_Column_List_Base">
+        id,websiteName,websiteDetail,contact,phone,lat,lng.websiteTime,opearType,opearState,latest_time,websiteType,companyName,province,city,area,areacode,
+        DATE_FORMAT(websiteTime,'%Y-%m-%d %H:%i:%S') as websiteTimeStr
+    </sql>
+    <select id="findAddressByWebsitrs" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from t_vehicle_website
+        where 1=1
+        <if test="province!=null and province!=''">
+            and province=#{province,jdbcType=VARCHAR}
+        </if>
+        <if test="city !=null and city!=''">
+            and (city =#{city,jdbcType=VARCHAAR} or city=#{citysimple,jdbcType=VARCHAR})
+        </if>
+        <if test="area!=null and area!=''">
+            and area = #{area,jdbcType=VARCHAR}
+        </if>
+        and lat IS NOT NULL AND lng IS NOT NULL
+    </select>
+    <select id="findWebsiteById" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from t_vehicle_website
+        where id=#{id,jdbcType=VARCHAR}
+    </select>
+    <insert id="insertBatch" parameterType="java.util.List">
+        insert into t_vehicle_website
+        (id,websiteName,websiteDetail,contact,phone,plane,lat,lng,websiteTime
+         opearType,opearState,websiteType,companyName,province,city,area,areacode)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item,id},#{item.websiteName},#{item.websiteDetail},#{item.contact},#{item.phone},#{item.lat},#{item.lng},
+             #{item.websiteTime},#{item.opearType},#{item.opearState},#{item.websiteType},#{item.companyName},#{item.province},#{item.city},
+             #{item.area},#{item.areacode})
+        </foreach>
+    </insert>
+    <delete id="deleteById" parameterType="map">
+        delete from t_vehicle_website
+        where
+        id=#{id,jdbcType=VARCHAR}
+    </delete>
+    <update id="updateById" parameterType="org.gisoper.com.vo.TVehicleWebsite" flushCache="true">
+        update t_vehicle_website
+        set
+        websiteName=#{websiteName,jdbcType=VARCHAR},websiteDetail=#{websiteDetail,jdbcType=VARCHAR},
+        contact=#{contact,jdbcType=VARCHAR},
+        phone=#{phone,jdbcType=VARCHAR},plane=#{plane,jdbcType=VARCHAR},lat=#{lat,jdbcType=VARCHAR},
+        lng=#{lng,jdbcType=VARCHAR},websiteTime=#{websiteTime,jdbcType=VARCAHR},
+        opearType=#{opearType,jdbcType=VARCHAR},opearState=#{opearState,jdbcType=VARCHAR},
+        websiteType=#{websiteType,jdbcType=VARCHAR},companyName=#{companyName,jdbcType=VARCHAR},
+        province=#{province,jdbcType=VARCHAR},city=#{city,jdbcType=VARCHAR},area=#{area,jdbcType=VARCHAR},areacode=#{areacode,jdbcType=VARCHAR}
+
+        where id=#{id,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateOperatStatePrimaryKey" parameterType="map" flushCache="true">
+        update  t_vehicle_website
+        set
+        opearType=#{opearType,jdbcType=VARCHAR},
+        opearStatus=#{opearStatus,jdbcType=VARCHAR}
+        where
+        id=#{id,jdbcType=VARCHAR}
+    </update>
+
+
+</mapper>

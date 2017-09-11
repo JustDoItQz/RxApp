@@ -1,6 +1,5 @@
 package org.gisoper.com;
 
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.gisoper.com.vo.Account;
 
