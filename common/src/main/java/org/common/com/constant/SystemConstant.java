@@ -51,4 +51,53 @@ public class SystemConstant {
 		return webProperties.getProperty("GIS_SYS_CODE").trim() ;
 	}
 
+	public static String getZhiYunOpenApi_Url(){
+		return webProperties.getProperty("ZhiYunOpenApi_Url").trim() ;
+	}
+
+	public static String getZhiYunOpenApiClientId_1(){
+
+		return webProperties.getProperty("ZhiYunOpenApiClientId_1").trim() ;
+	}
+	public static String getZhiYunOpenApiClientId_2(){
+
+		return webProperties.getProperty("ZhiYunOpenApiClientId_2").trim() ;
+	}
+	public static String getZhiYunOpenApiClientId_3(){
+
+		return webProperties.getProperty("ZhiYunOpenApiClientId_3").trim() ;
+	}
+
+	public static String getZhiYunOpenApi_User_1(){
+
+		return webProperties.getProperty("ZhiYunOpenApi_User_1").trim() ;
+	}
+
+	public static String getZhiYunOpenApi_User_2(){
+
+		return webProperties.getProperty("ZhiYunOpenApi_User_2").trim() ;
+	}
+
+	public static String getZhiYunOpenApi_User_3(){
+
+		return webProperties.getProperty("ZhiYunOpenApi_User_3").trim() ;
+	}
+
+	public static String getZhiYunOpenApi_Pwd_1(){
+
+		return webProperties.getProperty("ZhiYunOpenApi_Pwd_1").trim() ;
+	}
+
+	public static String getZhiYunOpenApi_Pwd_2(){
+
+		return webProperties.getProperty("ZhiYunOpenApi_Pwd_2").trim() ;
+	}
+
+	public static String getZhiYunOpenApi_Pwd_3(){
+
+		return webProperties.getProperty("ZhiYunOpenApi_Pwd_3").trim() ;
+	}
+
+
+
 }

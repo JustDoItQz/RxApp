@@ -6,6 +6,18 @@ package org.common.com.constant;
  */
 public class ConstantUtils {
 
+    /*中交产生token存在缓存中*/
+    //1、表示位置账号
+    public static final String ZHIYUNOPENAPI_USER_TOKEN_1 = "ZHIYUNOPENAPI_USER_TOKEN_1" ;
+    //2、表示获取历史记录账号
+    public static final String ZHIYUNOPENAPI_USER_TOKEN_2 = "ZHIYUNOPENAPI_USER_TOKEN_2" ;
+    //3、表示验证车辆是否存在账号
+    public static final String ZHIYUNOPENAPI_USER_TOKEN_3 = "ZHIYUNOPENAPI_USER_TOKEN_3" ;
+
+    //请求数据成功
+    public static final int ZHIYUNOPENAPI_SUCCESS_TYPE = 1001 ;
+
+
     /*高德相关请求地址*/
 
     //高德行政区域查询

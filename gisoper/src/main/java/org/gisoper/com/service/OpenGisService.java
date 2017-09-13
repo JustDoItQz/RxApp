@@ -12,16 +12,14 @@ import org.common.com.utils.DateUtils;
 import org.common.com.utils.ESBOper;
 import org.common.com.utils.HttpclientUtil;
 import org.common.com.utils.ResponseESB;
+import org.elasticsearch.cluster.metadata.AliasAction;
 import org.gisoper.com.vo.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.common.com.constant.ConstantUtils.VEHICLE_WEBSITE_DELETE_PREFIX;
 
@@ -412,21 +410,144 @@ public class OpenGisService {
         try{
             String gisId = DateUtils.nextSequence() ;
             response.setGisId(gisId);
-            //RouteDriverVo.Response routeDriverVo = addressInfos(s)
+            RouteDriverVo.Response routeDriverVo = addInfoList(request,response) ;
+            List<String> errorList = routeDriverVo.getErrorAddressList() ;
+            if (errorList!=null&&errorList.size()>0){
+                return response ;
+            }
+            List<AddressInfoVo> uploadList  = new ArrayList<AddressInfoVo>() ;
+            List<AddressInfoVo> downList = new ArrayList<AddressInfoVo>() ;
+            List<AddressInfoVo> waypointsList = routeDriverVo.getWaypointsAddress() ;
+            //起点
+            AddressInfoVo startAddress = routeDriverVo.getStartAddress();
+            //终点
+            AddressInfoVo endAddress = routeDriverVo.getEndAddress() ;
+            if (waypointsList!=null&&waypointsList.size()>0){
+                for (AddressInfoVo waypoints:waypointsList){
+                    // 1、装 2、卸
+                    if (waypoints.getType().equals("1")){
+                        uploadList.add(waypoints) ;
+                    }else if (waypoints.getType().equals("2")){
+                        downList.add(waypoints) ;
+                    }
+                }
+                if (downList!=null&&downList.size()>0){
+                    if (uploadList!=null&&uploadList.size()>0){
+                        if (!isNullAddress(startAddress)&&!isNullAddress(endAddress)){
+                            reouterSDUEResponse(startAddress,downList,uploadList,endAddress,response) ;                        }
+                    }else{
+                        if (isNullAddress(startAddress)){
+                            response.setErrorMessage("同时存在运单、订单、起点不能为空！");
+                            return response ;
+                        }
+                        if (isNullAddress(endAddress)){
+                            response.setErrorMessage("同时存在运单、订单、终点不能为空！");
+                        }
+                    }
+
+                }else {
+
+                }
+            }else {
+
+            }
+
 
         }catch (Exception e){
-
+            e.printStackTrace();
         }
         return response ;
 
+    }
+    public List<AddressInfoVo> addressInfoSort(AddressInfoVo addressInfoVo,List<AddressInfoVo> addressInfoVoList){
+        List<AddressInfoVo> sortAddressList = new ArrayList<AddressInfoVo>() ;
+        Set<String> setPoint = new HashSet<String>() ;
+        if (addressInfoVoList!=null&&addressInfoVoList.size()>0&&addressInfoVo!=null){
+            JSONArray jsonArray = new JSONArray() ;
+
+        }
+
+        return sortAddressList ;
+    }
+    public Map<String,BeanDistanceVo> distanceRouterList(AddressInfoVo addressInfoVo,List<AddressInfoVo> addressInfoVoList) throws Exception{
+        Map<String,BeanDistanceVo> mapdistance = new HashMap<String, BeanDistanceVo>() ;
+        JSONObject json = new JSONObject() ;
+
+
+        return mapdistance ;
+    }
+
+    public void reouterSDUEResponse(AddressInfoVo startAddressVo,List<AddressInfoVo> downList,List<AddressInfoVo> uploadList,AddressInfoVo endAddressVo,RouteDriverVo.Response response){
+        List<AddressInfoVo> waypointList = new ArrayList<AddressInfoVo>() ;
+        List<AddressInfoVo> uplist = new ArrayList<AddressInfoVo>() ;
+        if (uplist!=null&&uplist.size()>0){
+            for (int i=(uplist.size());i>=0;i--){
+                if (i==(uplist.size()-1)){
+                    if (isNullAddress(startAddressVo)){
+                        startAddressVo = uplist.get(i) ;
+                        response.setStartAddress(startAddressVo);
+                    }else{
+                        waypointList.add(uplist.get(i)) ;
+                    }
+                }else{
+                    waypointList.add(uplist.get(i)) ;
+                }
+
+            }
+        }
+
+
+    }
+
+    public boolean isNullAddress(AddressInfoVo addressInfoVo){
+        boolean isNull = true ;
+        if (addressInfoVo==null){
+            isNull=true ;
+        }else if (addressInfoVo!=null){
+            if (addressInfoVo.getLocation()==""||addressInfoVo.getLocation().equals("")){
+                isNull = true ;
+            }else {
+                isNull=false ;
+            }
+        }
+        return isNull ;
     }
     public RouteDriverVo.Response addInfoList(RouteDriverVo.Request requestVo,RouteDriverVo.Response response){
         List<String> errorAddressInfoVos = new ArrayList<String>() ;
         AddressInfoCapaVo startAddress = requestVo.getStartAddress() ;
         if (startAddress!=null&&StringUtils.isNotBlank(startAddress.getDetail())){
             AddressInfoVo startInfoVo = addressInfos(startAddress) ;
+            if (StringUtils.isNotBlank(startInfoVo.getLat())&&StringUtils.isNotBlank(startInfoVo.getLng())){
+                response.setStartAddress(startInfoVo);
+            }else{
+                errorAddressInfoVos.add(startInfoVo.getDetail()) ;
+            }
+
         }
-        return null ;
+        List<AddressInfoCapaVo> addressInfoCapaVoList = requestVo.getWayPointsAddress() ;
+        if (addressInfoCapaVoList!=null&&addressInfoCapaVoList.size()>0){
+            Map<String,List<AddressInfoVo>> map = gisOperService.addressInfoBatch(addressInfoCapaVoList) ;
+            List<AddressInfoVo> errorList = map.get("errorList") ;
+            if (errorList!=null&&errorList.size()>0){
+                for (AddressInfoVo errorVo:errorList){
+                    errorAddressInfoVos.add(errorVo.getDetail()) ;
+                }
+            }else {
+                response.setWaypointsAddress(map.get("listAddressVo"));
+            }
+            AddressInfoCapaVo endAddressVo = requestVo.getEndAddress() ;
+            if (endAddressVo!=null&&StringUtils.isNotBlank(endAddressVo.getDetail())){
+                AddressInfoVo endAddess = addressInfos(endAddressVo) ;
+                if (StringUtils.isNotBlank(endAddess.getLng())&&StringUtils.isNotBlank(endAddess.getLat())){
+                    response.setEndAddress(endAddess);
+                }else {
+                    errorAddressInfoVos.add(endAddess.getDetail()) ;
+                }
+            }
+            response.setErrorAddressList(errorAddressInfoVos);
+
+        }
+        return response ;
 
     }
 
@@ -446,7 +567,25 @@ public class OpenGisService {
                 JSONArray array = object.getJSONArray("geocodes") ;
                 StringBuilder sb = new StringBuilder() ;
                 JSONObject geocode = (JSONObject) array.get(0) ;
-
+                String location = geocode.getString("location") ;
+                String address = geocode.getString("formatted_address") ;
+                String province = geocode.getString("province") ;
+                String city = geocode.getString("city") ;
+                String district = geocode.getString("district") ;
+                String township = "" ;
+                String town = "" ;
+                sb.append(province+"|"+city+"|"+district+"|"+township+"|"+town+"|"+address+"|"+location) ;
+                String [] locations = location.split("") ;
+                addressInfoVo.setLng(locations[0]);
+                addressInfoVo.setLat(locations[1]);
+                addressInfoVo.setLocation(location);
+                addressInfoVo.setAddress(address);
+                addressInfoVo.setDetail(infoCapaVo.getDetail());
+                addressInfoVo.setProvince(province);
+                addressInfoVo.setCity(city);
+                addressInfoVo.setDistrict(district);
+                addressInfoVo.setAddId(infoCapaVo.getAddId());
+                addressInfoVo.setType(infoCapaVo.getType());
 
             }
         }catch (Exception e){

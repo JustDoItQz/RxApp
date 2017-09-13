@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9350710a-6b30-4319-80eb-c5a1a87917f9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/vo/RouteDriverVo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/vo/TriggerLog.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/vo/RegisterPartnerBeanVo.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/vo/TVehicleRecords.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/controller/FenceController.java" afterPath="$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/controller/FenceController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/src/main/java/org/common/com/constant/ConstantUtils.java" afterPath="$PROJECT_DIR$/common/src/main/java/org/common/com/constant/ConstantUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/src/main/java/org/common/com/constant/SystemConstant.java" afterPath="$PROJECT_DIR$/common/src/main/java/org/common/com/constant/SystemConstant.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/service/OpenGisService.java" afterPath="$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/service/OpenGisService.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -37,74 +38,47 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="OpenGisController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/controller/OpenGisController.java">
+      <file leaf-file-name="GisOperService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/service/GisOperService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
-              <caret line="329" column="43" lean-forward="true" selection-start-line="329" selection-start-column="43" selection-end-line="329" selection-end-column="43" />
+            <state relative-caret-position="1976">
+              <caret line="117" column="32" lean-forward="false" selection-start-line="117" selection-start-column="32" selection-end-line="117" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OpenGisService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/service/OpenGisService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-438">
+              <caret line="536" column="11" lean-forward="true" selection-start-line="536" selection-start-column="11" selection-end-line="536" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ZhiYunOpenApiUtil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/utils/ZhiYunOpenApiUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="15" column="85" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="85" />
               <folding>
-                <element signature="e#14588#14589#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#3004#3020#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OpenGisService.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/service/OpenGisService.java">
+      <file leaf-file-name="PartnerApiUtil.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/utils/PartnerApiUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="431" column="0" lean-forward="true" selection-start-line="431" selection-start-column="0" selection-end-line="431" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GisOperService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/service/GisOperService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="43" column="71" lean-forward="true" selection-start-line="43" selection-start-column="71" selection-end-line="43" selection-end-column="71" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GisOpertService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/service/GisOpertService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="185" column="5" lean-forward="true" selection-start-line="185" selection-start-column="5" selection-end-line="185" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GisOpertController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/controller/GisOpertController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="134" column="17" lean-forward="false" selection-start-line="134" selection-start-column="17" selection-end-line="134" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AppConstants.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common/src/main/java/org/common/com/app/AppConstants.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FenceController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/controller/FenceController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="28" column="74" lean-forward="true" selection-start-line="28" selection-start-column="74" selection-end-line="28" selection-end-column="74" />
-              <folding />
+            <state relative-caret-position="228">
+              <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -112,8 +86,8 @@
       <file leaf-file-name="ConstantUtils.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/common/src/main/java/org/common/com/constant/ConstantUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="16">
-              <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+            <state relative-caret-position="323">
+              <caret line="17" column="54" lean-forward="false" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="54" />
               <folding />
             </state>
           </provider>
@@ -122,18 +96,41 @@
       <file leaf-file-name="SystemConstant.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/common/src/main/java/org/common/com/constant/SystemConstant.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="22" column="11" lean-forward="false" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="11" />
+            <state relative-caret-position="475">
+              <caret line="53" column="45" lean-forward="false" selection-start-line="53" selection-start-column="25" selection-end-line="53" selection-end-column="45" />
+              <folding>
+                <element signature="e#1149#1150#0" expanded="true" />
+                <element signature="e#1217#1218#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GisOpertService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/service/GisOpertService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="6612">
+              <caret line="364" column="23" lean-forward="false" selection-start-line="364" selection-start-column="23" selection-end-line="364" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MyBatisDao.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common/src/main/java/org/common/com/dao/MyBatisDao.java">
+      <file leaf-file-name="InstantiationTraceProcessor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/service/InstantiationTraceProcessor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+            <state relative-caret-position="576">
+              <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JPushService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/service/JPushService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -150,8 +147,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>logback-version</find>
-      <find>springContext</find>
       <find>MappingJacksonJsonView</find>
       <find>fasterxml</find>
       <find>Client</find>
@@ -180,6 +175,8 @@
       <find>integration</find>
       <find>jedis</find>
       <find>saveDBLog</find>
+      <find>addressInfos</find>
+      <find>batch</find>
     </findStrings>
     <replaceStrings>
       <replace>RedisOper</replace>
@@ -203,10 +200,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/spacesearch/src/main/webapp/WEB-INF/jsp/trafffic.jsp" />
-        <option value="$PROJECT_DIR$/spacesearch/src/main/webapp/WEB-INF/jsp/satellite.jsp" />
-        <option value="$PROJECT_DIR$/spacesearch/src/main/webapp/WEB-INF/jsp/imagelayer.jsp" />
-        <option value="$PROJECT_DIR$/spacesearch/src/main/webapp/WEB-INF/jsp/googleandamaplayer.jsp" />
         <option value="$PROJECT_DIR$/spacesearch/src/main/webapp/WEB-INF/jsp/customlayer.jsp" />
         <option value="$PROJECT_DIR$/spacesearch/src/main/webapp/WEB-INF/jsp/districtsearch.jsp" />
         <option value="$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/service/InstantiationTraceProcessor.java" />
@@ -215,7 +208,6 @@
         <option value="$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/vo/PushExample.java" />
         <option value="$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/service/JPushService.java" />
         <option value="$PROJECT_DIR$/common/src/main/java/org/common/com/utils/JpushClientUtil.java" />
-        <option value="$PROJECT_DIR$/common/src/main/java/org/common/com/constant/SystemConstant.java" />
         <option value="$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/controller/JPushController.java" />
         <option value="$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/controller/SpaceSearchController.java" />
         <option value="$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/mapper/BasLocationMapper.xml" />
@@ -226,7 +218,6 @@
         <option value="$PROJECT_DIR$/spacesearch/pom.xml" />
         <option value="$PROJECT_DIR$/common/src/main/java/org/common/com/redis/RedisOper.java" />
         <option value="$PROJECT_DIR$/common/src/main/java/org/common/com/redis/RedisClient.java" />
-        <option value="$PROJECT_DIR$/common/src/main/java/org/common/com/constant/ConstantUtils.java" />
         <option value="$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/es/SpaceSearch.java" />
         <option value="$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/service/SpaceSearchService.java" />
         <option value="$PROJECT_DIR$/gisapp/src/main/webapp/WEB-INF/ampleadmin-dark/400.jsp" />
@@ -250,10 +241,16 @@
         <option value="$PROJECT_DIR$/common/src/main/java/org/common/com/utils/MapDistance.java" />
         <option value="$PROJECT_DIR$/spacesearch/src/main/java/org/es/com/service/SpaceSearchService.java" />
         <option value="$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/vo/TriggerLog.java" />
-        <option value="$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/service/FenceService.java" />
         <option value="$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/vo/RouteDriverVo.java" />
         <option value="$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/controller/FenceController.java" />
         <option value="$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/service/OpenGisService.java" />
+        <option value="$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/service/FenceService.java" />
+        <option value="$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/vo/TVehicleRecords.java" />
+        <option value="$PROJECT_DIR$/common/src/main/java/org/common/com/constant/SystemConstant.java" />
+        <option value="$PROJECT_DIR$/common/src/main/java/org/common/com/constant/ConstantUtils.java" />
+        <option value="$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/utils/ZhiYunOpenApiUtil.java" />
+        <option value="$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/vo/RegisterPartnerBeanVo.java" />
+        <option value="$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/utils/PartnerApiUtil.java" />
       </list>
     </option>
   </component>
@@ -299,10 +296,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="10" />
-    <option name="y" value="418" />
+    <option name="x" value="-23" />
+    <option name="y" value="516" />
     <option name="width" value="1924" />
-    <option name="height" value="646" />
+    <option name="height" value="714" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -320,8 +317,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -362,13 +357,24 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RxApp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gisoper" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="vo" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -378,11 +384,11 @@
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
-    <property name="project.structure.last.edited" value="Problems" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Java" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="editor.config.accepted" value="true" />
   </component>
   <component name="RecentsManager">
@@ -983,7 +989,10 @@
       <workItem from="1503630506259" duration="7849000" />
       <workItem from="1503643273551" duration="847000" />
       <workItem from="1505091280843" duration="19015000" />
-      <workItem from="1505123651715" duration="142000" />
+      <workItem from="1505123651715" duration="1053000" />
+      <workItem from="1505177847690" duration="12333000" />
+      <workItem from="1505263750766" duration="1273000" />
+      <workItem from="1505265785340" duration="13947000" />
     </task>
     <task id="LOCAL-00001" summary="使用maven多环境local属性文件">
       <created>1503643542387</created>
@@ -1055,11 +1064,25 @@
       <option name="project" value="LOCAL" />
       <updated>1505123753469</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="增加电子围栏">
+      <created>1505123801522</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1505123801522</updated>
+    </task>
+    <task id="LOCAL-00012" summary="调用中交和管车宝接口">
+      <created>1505295457371</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1505295457371</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="340246000" />
+    <option name="totallyTimeSpent" value="368710000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1072,7 +1095,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5816686" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1080,7 +1102,7 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5428907" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17328918" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1089,8 +1111,8 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32902467" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22916667" sideWeight="0.7093649" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22916667" sideWeight="0.29063508" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25416666" sideWeight="0.6912088" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25416666" sideWeight="0.30879122" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299356" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1132,7 +1154,8 @@
     <MESSAGE value="配置maven多环境" />
     <MESSAGE value="使用maven多环境local属性文件" />
     <MESSAGE value="增加电子围栏" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加电子围栏" />
+    <MESSAGE value="调用中交和管车宝接口" />
+    <option name="LAST_COMMIT_MESSAGE" value="调用中交和管车宝接口" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1147,7 +1170,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="107" />
+      <option name="time" value="108" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1156,19 +1179,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/gisapp/src/main/webapp/ui/bootstrap/dist/css/bootstrap.min.css" />
-    <entry file="file://$PROJECT_DIR$/gisapp/src/main/webapp/WEB-INF/jsp/admin/bootstrap-tables.jsp" />
-    <entry file="file://$PROJECT_DIR$/gisapp/src/main/webapp/WEB-INF/jsp/admin/user-cards.jsp" />
-    <entry file="file://$PROJECT_DIR$/gisapp/src/main/webapp/WEB-INF/jsp/admin/typography.jsp" />
-    <entry file="file://$PROJECT_DIR$/gisapp/src/main/webapp/WEB-INF/jsp/admin/weather.jsp" />
-    <entry file="file://$PROJECT_DIR$/gisapp/src/main/webapp/WEB-INF/jsp/admin/index.jsp" />
-    <entry file="file://$PROJECT_DIR$/spacesearch/src/main/webapp/WEB-INF/jsp/buslinesearch.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="80" lean-forward="false" selection-start-line="12" selection-start-column="80" selection-end-line="12" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gisapp/src/main/webapp/ui/plugins/bower_components/bootstrap-select/bootstrap-select.min.css" />
     <entry file="file://$PROJECT_DIR$/gisapp/src/main/webapp/ui/plugins/bower_components/Animatedbg/img/demo-1-bg.jpg" />
     <entry file="file://$PROJECT_DIR$/gisapp/src/main/webapp/ui/plugins/images/assets/landscape2.jpg" />
@@ -1209,7 +1219,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
           <caret line="12" column="16" lean-forward="false" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1241,7 +1250,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="15" column="21" lean-forward="true" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1300,7 +1308,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
           <caret line="2" column="17" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1308,15 +1315,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3344">
           <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/controller/WebController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="41" column="21" lean-forward="false" selection-start-line="41" selection-start-column="21" selection-end-line="41" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1331,101 +1329,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-803">
           <caret line="15" column="4" lean-forward="false" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
-          <folding>
-            <element signature="e#446#447#0" expanded="true" />
-            <element signature="e#471#472#0" expanded="true" />
-            <element signature="e#504#505#0" expanded="true" />
-            <element signature="e#532#533#0" expanded="true" />
-            <element signature="e#568#569#0" expanded="true" />
-            <element signature="e#602#603#0" expanded="true" />
-            <element signature="e#654#655#0" expanded="true" />
-            <element signature="e#700#701#0" expanded="true" />
-            <element signature="e#735#736#0" expanded="true" />
-            <element signature="e#769#770#0" expanded="true" />
-            <element signature="e#820#821#0" expanded="true" />
-            <element signature="e#866#867#0" expanded="true" />
-            <element signature="e#902#903#0" expanded="true" />
-            <element signature="e#934#935#0" expanded="true" />
-            <element signature="e#984#985#0" expanded="true" />
-            <element signature="e#1026#1027#0" expanded="true" />
-            <element signature="e#1060#1061#0" expanded="true" />
-            <element signature="e#1090#1091#0" expanded="true" />
-            <element signature="e#1136#1137#0" expanded="true" />
-            <element signature="e#1174#1175#0" expanded="true" />
-            <element signature="e#1211#1212#0" expanded="true" />
-            <element signature="e#1247#1248#0" expanded="true" />
-            <element signature="e#1302#1303#0" expanded="true" />
-            <element signature="e#1352#1353#0" expanded="true" />
-            <element signature="e#1381#1382#0" expanded="true" />
-            <element signature="e#1409#1410#0" expanded="true" />
-            <element signature="e#1448#1449#0" expanded="true" />
-            <element signature="e#1482#1483#0" expanded="true" />
-            <element signature="e#1516#1517#0" expanded="true" />
-            <element signature="e#1548#1549#0" expanded="true" />
-            <element signature="e#1596#1597#0" expanded="true" />
-            <element signature="e#1638#1639#0" expanded="true" />
-            <element signature="e#1675#1676#0" expanded="true" />
-            <element signature="e#1708#1709#0" expanded="true" />
-            <element signature="e#1760#1761#0" expanded="true" />
-            <element signature="e#1804#1805#0" expanded="true" />
-            <element signature="e#1843#1844#0" expanded="true" />
-            <element signature="e#1878#1879#0" expanded="true" />
-            <element signature="e#1934#1935#0" expanded="true" />
-            <element signature="e#1982#1983#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/vo/RouteDriverVo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1064">
-          <caret line="56" column="34" lean-forward="false" selection-start-line="56" selection-start-column="34" selection-end-line="56" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#411#412#0" expanded="true" />
-            <element signature="e#454#455#0" expanded="true" />
-            <element signature="e#525#526#0" expanded="true" />
-            <element signature="e#581#582#0" expanded="true" />
-            <element signature="e#633#634#0" expanded="true" />
-            <element signature="e#674#675#0" expanded="true" />
-            <element signature="e#741#742#0" expanded="true" />
-            <element signature="e#793#794#0" expanded="true" />
-            <element signature="e#857#858#0" expanded="true" />
-            <element signature="e#904#905#0" expanded="true" />
-            <element signature="e#1092#1093#0" expanded="true" />
-            <element signature="e#1131#1132#0" expanded="true" />
-            <element signature="e#1183#1184#0" expanded="true" />
-            <element signature="e#1231#1232#0" expanded="true" />
-            <element signature="e#1667#1668#0" expanded="true" />
-            <element signature="e#1713#1714#0" expanded="true" />
-            <element signature="e#1755#1756#0" expanded="true" />
-            <element signature="e#1792#1793#0" expanded="true" />
-            <element signature="e#1831#1832#0" expanded="true" />
-            <element signature="e#1881#1882#0" expanded="true" />
-            <element signature="e#1929#1930#0" expanded="true" />
-            <element signature="e#1966#1967#0" expanded="true" />
-            <element signature="e#2005#2006#0" expanded="true" />
-            <element signature="e#2055#2056#0" expanded="true" />
-            <element signature="e#2103#2104#0" expanded="true" />
-            <element signature="e#2153#2154#0" expanded="true" />
-            <element signature="e#2196#2197#0" expanded="true" />
-            <element signature="e#2263#2264#0" expanded="true" />
-            <element signature="e#2319#2320#0" expanded="true" />
-            <element signature="e#2367#2368#0" expanded="true" />
-            <element signature="e#2408#2409#0" expanded="true" />
-            <element signature="e#2471#2472#0" expanded="true" />
-            <element signature="e#2523#2524#0" expanded="true" />
-            <element signature="e#2583#2584#0" expanded="true" />
-            <element signature="e#2630#2631#0" expanded="true" />
-            <element signature="e#2828#2829#0" expanded="true" />
-            <element signature="e#2875#2876#0" expanded="true" />
-            <element signature="e#2949#2950#0" expanded="true" />
-            <element signature="e#3013#3014#0" expanded="true" />
-            <element signature="e#3056#3057#0" expanded="true" />
-            <element signature="e#3099#3100#0" expanded="true" />
-            <element signature="e#3159#3160#0" expanded="true" />
-            <element signature="e#3215#3216#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1437,110 +1340,282 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/service/FenceService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="23" column="35" lean-forward="true" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
-          <folding>
-            <element signature="e#2051#2067#0" expanded="true" />
-            <element signature="e#3222#3238#0" expanded="true" />
-            <element signature="e#3778#3794#0" expanded="true" />
-            <element signature="method#istrigger#0;class#FenceService#0" expanded="false" />
-            <element signature="e#9118#9134#0" expanded="true" />
-            <element signature="e#9412#9428#0" expanded="true" />
-            <element signature="e#9581#9593#0" expanded="true" />
-            <element signature="e#9642#9658#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/controller/JPushController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="17" column="14" lean-forward="false" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/controller/GisOpertController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="134" column="17" lean-forward="false" selection-start-line="134" selection-start-column="17" selection-end-line="134" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/common/src/main/java/org/common/com/app/AppConstants.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="256">
-          <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/common/com/constant/ConstantUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
-          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/common/com/constant/SystemConstant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="22" column="11" lean-forward="false" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="11" />
-          <folding />
+          <caret line="16" column="9" lean-forward="false" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/common/src/main/java/org/common/com/dao/MyBatisDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
+        <state relative-caret-position="16">
           <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/vo/RouteDriverVo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-13">
+          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/common/com/exception/ESBException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="512">
+          <caret line="36" column="9" lean-forward="true" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/controller/OpenGisController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="316" column="23" lean-forward="false" selection-start-line="316" selection-start-column="23" selection-end-line="316" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/controller/GisOpertController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="166" column="0" lean-forward="false" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/controller/FenceController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="28" column="74" lean-forward="true" selection-start-line="28" selection-start-column="74" selection-end-line="28" selection-end-column="74" />
+        <state relative-caret-position="645">
+          <caret line="45" column="67" lean-forward="false" selection-start-line="45" selection-start-column="67" selection-end-line="45" selection-end-column="67" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/controller/OpenGisController.java">
+    <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/service/FenceService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="329" column="43" lean-forward="true" selection-start-line="329" selection-start-column="43" selection-end-line="329" selection-end-column="43" />
+        <state relative-caret-position="645">
+          <caret line="251" column="41" lean-forward="false" selection-start-line="251" selection-start-column="41" selection-end-line="251" selection-end-column="41" />
           <folding>
-            <element signature="e#14588#14589#0" expanded="true" />
+            <element signature="e#2051#2067#0" expanded="true" />
+            <element signature="e#3222#3238#0" expanded="true" />
+            <element signature="e#3778#3794#0" expanded="true" />
+            <element signature="e#5682#5863#0" expanded="true" />
+            <element signature="e#5862#5863#0" expanded="true" />
+            <element signature="method#istrigger#0;class#FenceService#0" expanded="false" />
+            <element signature="e#6321#6337#0" expanded="true" />
+            <element signature="e#9118#9134#0" expanded="true" />
+            <element signature="e#9412#9428#0" expanded="true" />
+            <element signature="e#9642#9658#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/service/GisOpertService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="185" column="5" lean-forward="true" selection-start-line="185" selection-start-column="5" selection-end-line="185" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/service/GisOperService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="43" column="71" lean-forward="true" selection-start-line="43" selection-start-column="71" selection-end-line="43" selection-end-column="71" />
+        <state relative-caret-position="1976">
+          <caret line="117" column="32" lean-forward="false" selection-start-line="117" selection-start-column="32" selection-end-line="117" selection-end-column="32" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/service/GisOpertService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6612">
+          <caret line="364" column="23" lean-forward="false" selection-start-line="364" selection-start-column="23" selection-end-line="364" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/service/InstantiationTraceProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/service/JPushService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/controller/WebController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="41" column="21" lean-forward="false" selection-start-line="41" selection-start-column="21" selection-end-line="41" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/vo/TVehicleRecords.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="19" column="41" lean-forward="false" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#589#590#0" expanded="true" />
+            <element signature="e#652#653#0" expanded="true" />
+            <element signature="e#706#707#0" expanded="true" />
+            <element signature="e#743#744#0" expanded="true" />
+            <element signature="e#776#777#0" expanded="true" />
+            <element signature="e#828#829#0" expanded="true" />
+            <element signature="e#872#873#0" expanded="true" />
+            <element signature="e#909#910#0" expanded="true" />
+            <element signature="e#944#945#0" expanded="true" />
+            <element signature="e#998#999#0" expanded="true" />
+            <element signature="e#1046#1047#0" expanded="true" />
+            <element signature="e#1082#1083#0" expanded="true" />
+            <element signature="e#1114#1115#0" expanded="true" />
+            <element signature="e#1164#1165#0" expanded="true" />
+            <element signature="e#1206#1207#0" expanded="true" />
+            <element signature="e#1242#1243#0" expanded="true" />
+            <element signature="e#1276#1277#0" expanded="true" />
+            <element signature="e#1328#1329#0" expanded="true" />
+            <element signature="e#1374#1375#0" expanded="true" />
+            <element signature="e#1409#1410#0" expanded="true" />
+            <element signature="e#1442#1443#0" expanded="true" />
+            <element signature="e#1492#1493#0" expanded="true" />
+            <element signature="e#1536#1537#0" expanded="true" />
+            <element signature="e#1575#1576#0" expanded="true" />
+            <element signature="e#1610#1611#0" expanded="true" />
+            <element signature="e#1666#1667#0" expanded="true" />
+            <element signature="e#1714#1715#0" expanded="true" />
+            <element signature="e#1754#1755#0" expanded="true" />
+            <element signature="e#1790#1791#0" expanded="true" />
+            <element signature="e#1848#1849#0" expanded="true" />
+            <element signature="e#1898#1899#0" expanded="true" />
+            <element signature="e#1933#1934#0" expanded="true" />
+            <element signature="e#1964#1965#0" expanded="true" />
+            <element signature="e#2012#2013#0" expanded="true" />
+            <element signature="e#2052#2053#0" expanded="true" />
+            <element signature="e#2087#2088#0" expanded="true" />
+            <element signature="e#2120#2121#0" expanded="true" />
+            <element signature="e#2170#2171#0" expanded="true" />
+            <element signature="e#2214#2215#0" expanded="true" />
+            <element signature="e#2242#2243#0" expanded="true" />
+            <element signature="e#2269#2270#0" expanded="true" />
+            <element signature="e#2306#2307#0" expanded="true" />
+            <element signature="e#2338#2339#0" expanded="true" />
+            <element signature="e#2370#2371#0" expanded="true" />
+            <element signature="e#2401#2402#0" expanded="true" />
+            <element signature="e#2446#2447#0" expanded="true" />
+            <element signature="e#2486#2487#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/service/OpenGisService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="431" column="0" lean-forward="true" selection-start-line="431" selection-start-column="0" selection-end-line="431" selection-end-column="0" />
+        <state relative-caret-position="-438">
+          <caret line="536" column="11" lean-forward="true" selection-start-line="536" selection-start-column="11" selection-end-line="536" selection-end-column="11" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/common/com/constant/SystemConstant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="53" column="45" lean-forward="false" selection-start-line="53" selection-start-column="25" selection-end-line="53" selection-end-column="45" />
+          <folding>
+            <element signature="e#1149#1150#0" expanded="true" />
+            <element signature="e#1217#1218#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/common/com/constant/ConstantUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="17" column="54" lean-forward="false" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/utils/ZhiYunOpenApiUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="85" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="85" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3004#3020#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/vo/RegisterPartnerBeanVo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="19" column="29" lean-forward="false" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+          <folding>
+            <element signature="e#534#535#0" expanded="true" />
+            <element signature="e#574#575#0" expanded="true" />
+            <element signature="e#606#607#0" expanded="true" />
+            <element signature="e#643#644#0" expanded="true" />
+            <element signature="e#676#677#0" expanded="true" />
+            <element signature="e#728#729#0" expanded="true" />
+            <element signature="e#772#773#0" expanded="true" />
+            <element signature="e#805#806#0" expanded="true" />
+            <element signature="e#834#835#0" expanded="true" />
+            <element signature="e#878#879#0" expanded="true" />
+            <element signature="e#914#915#0" expanded="true" />
+            <element signature="e#946#947#0" expanded="true" />
+            <element signature="e#974#975#0" expanded="true" />
+            <element signature="e#1016#1017#0" expanded="true" />
+            <element signature="e#1050#1051#0" expanded="true" />
+            <element signature="e#1084#1085#0" expanded="true" />
+            <element signature="e#1114#1115#0" expanded="true" />
+            <element signature="e#1160#1161#0" expanded="true" />
+            <element signature="e#1198#1199#0" expanded="true" />
+            <element signature="e#1234#1235#0" expanded="true" />
+            <element signature="e#1266#1267#0" expanded="true" />
+            <element signature="e#1316#1317#0" expanded="true" />
+            <element signature="e#1358#1359#0" expanded="true" />
+            <element signature="e#1395#1396#0" expanded="true" />
+            <element signature="e#1428#1429#0" expanded="true" />
+            <element signature="e#1480#1481#0" expanded="true" />
+            <element signature="e#1524#1525#0" expanded="true" />
+            <element signature="e#1559#1560#0" expanded="true" />
+            <element signature="e#1590#1591#0" expanded="true" />
+            <element signature="e#1638#1639#0" expanded="true" />
+            <element signature="e#1678#1679#0" expanded="true" />
+            <element signature="e#1714#1715#0" expanded="true" />
+            <element signature="e#1746#1747#0" expanded="true" />
+            <element signature="e#1796#1797#0" expanded="true" />
+            <element signature="e#1838#1839#0" expanded="true" />
+            <element signature="e#1874#1875#0" expanded="true" />
+            <element signature="e#1906#1907#0" expanded="true" />
+            <element signature="e#1956#1957#0" expanded="true" />
+            <element signature="e#1998#1999#0" expanded="true" />
+            <element signature="e#2033#2034#0" expanded="true" />
+            <element signature="e#2064#2065#0" expanded="true" />
+            <element signature="e#2112#2113#0" expanded="true" />
+            <element signature="e#2152#2153#0" expanded="true" />
+            <element signature="e#2187#2188#0" expanded="true" />
+            <element signature="e#2218#2219#0" expanded="true" />
+            <element signature="e#2266#2267#0" expanded="true" />
+            <element signature="e#2306#2307#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gisoper/src/main/java/org/gisoper/com/utils/PartnerApiUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1603,6 +1678,7 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
