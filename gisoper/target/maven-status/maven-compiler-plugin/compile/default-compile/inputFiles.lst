@@ -1,10 +1,15 @@
 C:\developer\myproject\git_workplace\RxApp\gisoper\src\main\java\org\gisoper\com\vo\AccountRequest.java
+C:\developer\myproject\git_workplace\RxApp\gisoper\src\main\java\org\gisoper\com\vo\RouteDriverVo.java
 C:\developer\myproject\git_workplace\RxApp\gisoper\src\main\java\org\gisoper\com\vo\StartEndDistance.java
 C:\developer\myproject\git_workplace\RxApp\gisoper\src\main\java\org\gisoper\com\service\FenceService.java
 C:\developer\myproject\git_workplace\RxApp\gisoper\src\main\java\org\gisoper\com\vo\BasLocation.java
+C:\developer\myproject\git_workplace\RxApp\gisoper\src\main\java\org\gisoper\com\vo\TVehicleRecords.java
+C:\developer\myproject\git_workplace\RxApp\gisoper\src\main\java\org\gisoper\com\vo\PartnerResultBeanVo.java
+C:\developer\myproject\git_workplace\RxApp\gisoper\src\main\java\org\gisoper\com\utils\ZhiYunOpenApiUtil.java
 C:\developer\myproject\git_workplace\RxApp\gisoper\src\main\java\org\gisoper\com\controller\GisOpertController.java
 C:\developer\myproject\git_workplace\RxApp\gisoper\src\main\java\org\gisoper\com\vo\ResultVo.java
 C:\developer\myproject\git_workplace\RxApp\gisoper\src\main\java\org\gisoper\com\vo\WebsitePointVo.java
+C:\developer\myproject\git_workplace\RxApp\gisoper\src\main\java\org\gisoper\com\vo\TriggerLog.java
 C:\developer\myproject\git_workplace\RxApp\gisoper\src\main\java\org\gisoper\com\controller\FenceController.java
 C:\developer\myproject\git_workplace\RxApp\gisoper\src\main\java\org\gisoper\com\vo\Account.java
 C:\developer\myproject\git_workplace\RxApp\gisoper\src\main\java\org\gisoper\com\controller\OpenGisController.java
@@ -18,6 +23,7 @@ C:\developer\myproject\git_workplace\RxApp\gisoper\src\main\java\org\gisoper\com
 C:\developer\myproject\git_workplace\RxApp\gisoper\src\main\java\org\gisoper\com\vo\AddressInfoVo.java
 C:\developer\myproject\git_workplace\RxApp\gisoper\src\main\java\org\gisoper\com\Test.java
 C:\developer\myproject\git_workplace\RxApp\gisoper\src\main\java\org\gisoper\com\vo\TVehicleDevice.java
+C:\developer\myproject\git_workplace\RxApp\gisoper\src\main\java\org\gisoper\com\utils\PartnerApiUtil.java
 C:\developer\myproject\git_workplace\RxApp\gisoper\src\main\java\org\gisoper\com\mq\AlarmQuenueListener.java
 C:\developer\myproject\git_workplace\RxApp\gisoper\src\main\java\org\gisoper\com\service\OpenGisService.java
 C:\developer\myproject\git_workplace\RxApp\gisoper\src\main\java\org\gisoper\com\vo\OpenAPIResultVo.java
@@ -28,3 +34,4 @@ C:\developer\myproject\git_workplace\RxApp\gisoper\src\main\java\org\gisoper\com
 C:\developer\myproject\git_workplace\RxApp\gisoper\src\main\java\org\gisoper\com\vo\AddressInfoCapaVo.java
 C:\developer\myproject\git_workplace\RxApp\gisoper\src\main\java\org\gisoper\com\service\JPushService.java
 C:\developer\myproject\git_workplace\RxApp\gisoper\src\main\java\org\gisoper\com\vo\LngLatVo.java
+C:\developer\myproject\git_workplace\RxApp\gisoper\src\main\java\org\gisoper\com\vo\RegisterPartnerBeanVo.java

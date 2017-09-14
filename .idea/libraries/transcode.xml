@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="transcode">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/gisapp/src/main/webapp/WEB-INF/lib/transcode.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

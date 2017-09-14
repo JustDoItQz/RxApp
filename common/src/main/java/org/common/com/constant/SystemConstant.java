@@ -98,6 +98,23 @@ public class SystemConstant {
 		return webProperties.getProperty("ZhiYunOpenApi_Pwd_3").trim() ;
 	}
 
+	/*管车宝接口*/
+
+	public static String getPartnerApiUser(){
+
+		return webProperties.getProperty("partner_api_user") ;
+	}
+
+	public static String getPartnerApiPwd(){
+
+		return webProperties.getProperty("partner_api_pwd") ;
+	}
+
+	public static String getPartnerUrl(){
+
+		return webProperties.getProperty("PartnerUrl").trim() ;
+	}
+
 
 
 }

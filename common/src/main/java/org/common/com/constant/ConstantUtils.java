@@ -17,6 +17,28 @@ public class ConstantUtils {
     //请求数据成功
     public static final int ZHIYUNOPENAPI_SUCCESS_TYPE = 1001 ;
 
+    /*管车宝*/
+    //手机注册接口
+    public static final String NEW_REGISTER = "new_register" ;
+    //删除注册手机接口
+    public static final String DEL_ORG_DRIVER_REL = "del_org_driver_rel" ;
+    //获取用户是否注册接口
+    public static final String GET_ORG_DRIVER_REL = "get_org_driver_rel" ;
+    //精确定位接口
+    public static final String MUIT_EXACT_LOCATION = "muti_exact_locate" ;
+
+    //管车宝注册状态
+    public static final String RESULT_YES_REGISTER="9009" ;
+    //未注册管车宝
+    public static final String RESULT_NO_REGISTER="9010" ;
+    //注册成功，发送短信成功
+    public static final String RESULT_NOTE_REGISTER="1006" ;
+    //管车宝类型
+    public static final String RESULT_TYPE_PREFIX="5" ;
+
+    //管车宝开关
+    public static final String PARTNERAPISWITCH = "PARTNERSWITCH" ;
+
 
     /*高德相关请求地址*/
 
