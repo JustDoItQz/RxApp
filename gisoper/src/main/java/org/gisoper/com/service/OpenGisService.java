@@ -13,6 +13,7 @@ import org.common.com.utils.ESBOper;
 import org.common.com.utils.HttpclientUtil;
 import org.common.com.utils.ResponseESB;
 import org.elasticsearch.cluster.metadata.AliasAction;
+import org.gisoper.com.utils.PartnerApiUtil;
 import org.gisoper.com.vo.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +33,8 @@ public class OpenGisService {
     private MyBatisDao myBatisDao ;
     @Autowired
     private GisOperService gisOperService ;
+    @Autowired
+    private DataExchangeService dataExchangeService ;
 
     //新增设备信息
     public String insertVehicleDevice(TVehicleDevice tVehicleDevice){
@@ -593,6 +596,22 @@ public class OpenGisService {
         }
 
         return addressInfoVo ;
+    }
+
+    //司机注册
+    public Map<String,String> driverPhoneResiter(RegisterPartnerBeanVo registerPartnerBeanVo) throws Exception {
+        Map<String,String> result = new HashMap<String, String>() ;
+
+        //加密请求参数
+        String param = PartnerApiUtil.paramEncode(ConstantUtils.NEW_REGISTER,registerPartnerBeanVo,null) ;
+        //请求数据
+        String resultJson = dataExchangeService.postPartnerApiService(SystemConstant.getPartnerUrl(),param) ;
+        //解密数据
+        List<PartnerResultBeanVo> list = PartnerApiUtil.resultDecode(resultJson) ;
+
+        result.put("data",JSONObject.fromObject(list).toString()) ;
+
+        return result ;
     }
 
 }
