@@ -1,6 +1,7 @@
 package org.gisoper.com.utils;
 
 import cn.jiguang.common.utils.StringUtils;
+import com.ctfo.dexs.service.DataExchangeService;
 import net.sf.json.JSONObject;
 import org.common.com.constant.ConstantUtils;
 import org.common.com.constant.SystemConstant;
@@ -36,8 +37,8 @@ public class ZhiYunOpenApiUtil {
             }
             param = "TransCode.encode(param)" ;
             url = url+param+"?client_id="+getZhiYunOpenApiClientId(type) ;
-            /*DataExchangeService des = DataExchangeService(5000,5000) ;*/
-            String res = "des.accessHttps(url,POST)";
+            DataExchangeService des = new DataExchangeService(5000,5000) ;
+            String res = des.accessHttps(url,"POST");
             res = "TransCode.decode(res)" ;
             json = JSONObject.fromObject(res) ;
             if (json!=null){
@@ -114,7 +115,7 @@ public class ZhiYunOpenApiUtil {
         }
         return user_token ;
     }
-    public static JSONObject dataExchangeServiceLogin(String url,String param,String type){
+    public static JSONObject dataExchangeServiceLogin(String url,String param,String type) throws Exception {
         JSONObject json = null ;
         //开关控制
         boolean hasswitch = false ;
@@ -127,8 +128,8 @@ public class ZhiYunOpenApiUtil {
         if (hasswitch){
             param = "TransCode.encode(param)" ;
             url = url+param+"?client_id="+getZhiYunOpenApiClientId(type) ;
-            /*DataExchangeService des = DataExchangeService(5000,5000) ;*/
-            String res = "des.accessHttps(url,POST)";
+            DataExchangeService des = new DataExchangeService(5000,5000);
+            String res = des.accessHttps(url,"POST") ;
             res = "TransCode.decode(res)" ;
             json = JSONObject.fromObject(res) ;
         }
