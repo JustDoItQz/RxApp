@@ -30,7 +30,7 @@
         id,websiteName,websiteDetail,contact,phone,lat,lng.websiteTime,opearType,opearState,latest_time,websiteType,companyName,province,city,area,areacode,
         DATE_FORMAT(websiteTime,'%Y-%m-%d %H:%i:%S') as websiteTimeStr
     </sql>
-    <select id="findAddressByWebsitrs" resultMap="BaseResultMap" parameterType="java.lang.String">
+    <select id="findAddressByWebsites" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
         <include refid="Base_Column_List"/>
         from t_vehicle_website
@@ -63,6 +63,19 @@
              #{item.area},#{item.areacode})
         </foreach>
     </insert>
+    <select id="searchWebSiteList" resultMap="BaseResultMap" parameterType="org.gisoper.com.vo.WebsiteRequestVo" flushCache="true">
+        select from t_vehicle_website s
+        left join
+        t_website_lat_lng t
+        on s.id=t.website_id
+        where 1=1
+        <if test="websiteName!=null and websiteName!=''">
+            and a.websiteName like ${websiteName}
+        </if>
+        order by weisiteTime desc limit #{page,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+
+    </select>
+
     <delete id="deleteById" parameterType="map">
         delete from t_vehicle_website
         where

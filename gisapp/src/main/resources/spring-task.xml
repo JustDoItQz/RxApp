@@ -7,6 +7,7 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
 >
 
+    <!--每天23:55:00执行一次-->
     <task:scheduled-tasks>
         <task:scheduled ref="scheduleDataTask" method="workTask" cron="0 55 23 * * ?"/>
     </task:scheduled-tasks>
