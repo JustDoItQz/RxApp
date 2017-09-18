@@ -23,7 +23,7 @@
 <%--<meta name="keywords" content="H-ui.admin v3.0,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
 <meta name="description" content="H-ui.admin v3.0，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">--%>
 </head>
-<body>
+<body onkeydown="onloginkey()">
 <input type="hidden" id="TenantId" name="TenantId" value="" />
 <div class="header"></div>
 <div class="loginWraper">
@@ -32,19 +32,19 @@
 			<div class="row cl">
 				<label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
 				<div class="formControls col-xs-8">
-					<input id="" name="" type="text" placeholder="账户" class="input-text size-L">
+					<input id="username" name="username" type="text" placeholder="账户" class="input-text size-L" maxlength="30">
 				</div>
 			</div>
 			<div class="row cl">
 				<label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60e;</i></label>
 				<div class="formControls col-xs-8">
-					<input id="" name="" type="password" placeholder="密码" class="input-text size-L">
+					<input id="password" name="password" type="password" placeholder="密码" class="input-text size-L" maxlength="20">
 				</div>
 			</div>
 			<div class="row cl">
 				<div class="formControls col-xs-8 col-xs-offset-3">
 					<input class="input-text size-L" type="text" placeholder="验证码" onblur="if(this.value==''){this.value='验证码:'}" onclick="if(this.value=='验证码:'){this.value='';}" value="验证码:" style="width:150px;">
-					<img src="images/VerifyCode.aspx.png">
+					<img src="<%=page%>images/VerifyCode.aspx.png">
 					<a id="kanbuq" href="javascript:;">看不清，换一张</a>
 				</div>
 			</div>
@@ -57,7 +57,7 @@
 			</div>
 			<div class="row cl">
 				<div class="formControls col-xs-8 col-xs-offset-3">
-					<input name="" type="submit" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">
+					<input name="" type="submit" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;" onclick="login()">
 					<input name="" type="reset" class="btn btn-default radius size-L" value="&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;">
 				</div>
 			</div>
@@ -76,6 +76,60 @@ var _hmt = _hmt || [];
   var s = document.getElementsByTagName("script")[0]; 
   s.parentNode.insertBefore(hm, s);
 })();
+
+function login() {
+	var userName = $("#username").val() ;
+	var password=$("#password").val() ;
+	var loginType = $('input:radio[name="loginType"]:checked').val() ;
+	if(isEmptyValue(userName)){
+	    $("#msg").html("登录名不能为空！").show() ;
+	    setTimeout(disMsg(),3000) ;
+	    return false ;
+	}
+
+	if(isEmptyValue(password)){
+        $("#msg").html("登录密码不能为空！！").show() ;
+        setTimeout(disMsg(),3000) ;
+        return false ;
+	}
+	$.ajax({
+		type:"POST",
+		url:"<%=path%>/page/login",
+		data:"username="+userName+"&password="+password+"&loginType="+loginType,
+		dataType:"JSON",
+		async:false,
+		success:function(result) {
+		    if(result.success==true){
+		        if(loginType==1){
+		            window.location.href="<%=page%>/page/main" ;
+				}else if(loginType==2){
+                    window.location.href="<%=page%>/page/adminlist" ;
+				}
+			}else{
+                $("#msg").html("用户名或密码有误！").show() ;
+                setTimeout(disMsg(),3000) ;
+                return false ;
+			}
+        }
+	})
+
+	function isEmptyValue(str) {
+		if (str==""||str=="undefined"||str==null||str=="undefined"||typeof str=="undefined"){
+		    return true ;
+		}else {
+		    return false ;
+		}
+    }
+    function onloginkey() {
+		if(window.event.keyCode==13){
+		    login() ;
+		}
+    }
+    function disMsg() {
+		$("#msg").hide() ;
+    }
+}
+
 </script>
 </body>
 </html>
