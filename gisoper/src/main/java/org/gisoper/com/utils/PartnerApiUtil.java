@@ -4,15 +4,12 @@ import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
 import org.common.com.constant.ConstantUtils;
 import org.common.com.constant.SystemConstant;
-import org.common.com.redis.RedisOper;
 import org.common.com.utils.DateUtils;
-import org.common.com.utils.HttpclientUtil;
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.gisoper.com.vo.PartnerResultBeanVo;
 import org.gisoper.com.vo.RegisterPartnerBeanVo;
-import org.gisoper.com.vo.TSubsysLog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
