@@ -476,7 +476,6 @@ public class OpenGisService {
         Map<String,BeanDistanceVo> mapdistance = new HashMap<String, BeanDistanceVo>() ;
         JSONObject json = new JSONObject() ;
 
-
         return mapdistance ;
     }
 

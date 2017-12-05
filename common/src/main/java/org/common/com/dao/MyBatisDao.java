@@ -31,6 +31,11 @@ public class MyBatisDao extends SqlSessionDaoSupport {
 
 		getSqlSession().delete(key, id);
 	}
+	@Options(flushCache=true)
+	public void delete(String key) {
+
+		getSqlSession().delete(key);
+	}
 
 	@Options(flushCache=true)
 	public void delete(String key, Object obj) {

@@ -4,7 +4,6 @@ import org.common.com.redis.RedisOper;
 import org.common.com.vo.UserSessionVo;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class SessionUtils {

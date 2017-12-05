@@ -31,11 +31,12 @@ public class GisOpertService {
 
     public  void initBaseLocalCode () throws  Exception{
 
+        myBatisDao.delete("org.gisoper.com.mapper.BasLocationMapper.deleteAllData");
         Map<String,String> paramters =  new HashMap<String,String>() ;
         List<BasLocation> baseLocationCodes = new ArrayList<BasLocation>() ;
         paramters.put("output","json") ;
         paramters.put("lavel","contry") ;
-        paramters.put("subdistrict","4") ;
+        paramters.put("subdistrict","3") ;
         paramters.put("key", SystemConstant.getGAODE_KEY()) ;
         String str = HttpclientUtil.postMSG(paramters, ConstantUtils.ADDRESS_DISTRICT_URL_PREFIX) ;
         logger.info("获取到的高德数据{}",str);
@@ -159,7 +160,7 @@ public class GisOpertService {
                     String districtCodeId = cityCodeId+"|"+districtCode ;
                     setBasLocationCodeByJson(jsonObject,baseLocationCode,pcdistrict,districtCode,districtCodeId);
                     insertStreetAddressCode(jsonDiss,baseLocationCodes,pcdistrict,districtCode,districtCodeId) ;
-                    //baseLocationCodes.add(baseLocationCode) ;
+                    baseLocationCodes.add(baseLocationCode) ;
                 }
             }
         }
@@ -250,11 +251,11 @@ public class GisOpertService {
         List<BasLocation> basLocations = new ArrayList<BasLocation>() ;
         if (basLocationList!=null&&basLocationList.size()>0){
             for (BasLocation basLocation:basLocationList){
-                getBaseCodeArea(basLocations,basLocation,1);
+                getBaseCodeArea(basLocations,basLocation);
             }
         }
         if (basLocations!=null&&basLocations.size()>0){
-            myBatisDao.save("org.gisoper.com.mapper.BasLocationMapper.insertLocationAreaCode",basLocations);
+            myBatisDao.save("org.gisoper.com.mapper.BasLocationMapper.insertLocationCode",basLocations);
         }
     }
 
@@ -269,7 +270,7 @@ public class GisOpertService {
         List<BasLocation> basLocations = new ArrayList<BasLocation>() ;
         if (basLocationList!=null&&basLocationList.size()>0){
             for (BasLocation basLocation:basLocationList){
-                getBaseCodeArea(basLocations,basLocation,0);
+                getBaseCodeArea(basLocations,basLocation);
             }
         }
         if (basLocations!=null&&basLocations.size()>0){
@@ -292,7 +293,7 @@ public class GisOpertService {
      * @return
      */
 
-    public  void getBaseCodeArea(List<BasLocation> basLocations,BasLocation basLocationCode,int index){
+    public  void getBaseCodeArea(List<BasLocation> basLocations,BasLocation basLocationCode){
 
         try{
             String requestUrl = ConstantUtils.ADDRESS_TENGCENT_DISTRICT_URL_PREFIX+"?key="+SystemConstant.getTENGCENT_KEY()+"&output=json"+"&id="+basLocationCode.getLocationId() ;
@@ -312,7 +313,7 @@ public class GisOpertService {
                             String locationCodeId = basLocationCode.getLocationId() ;
                             String pcestreet = basLocationCode.getParentLocationFullId()+"|"+locationCodeId ;
                             BasLocation basLocation = new BasLocation() ;
-                            setLocationCodeTengXunByJson(jsonObject,basLocation,padistrict,cityCode,locationCodeId,pcestreet,index) ;
+                            setLocationCodeTengXunByJson(jsonObject,basLocation,padistrict,cityCode,locationCodeId,pcestreet) ;
                             basLocations.add(basLocation) ;
                         }
                     }
@@ -328,16 +329,14 @@ public class GisOpertService {
     }
 
 
-    public void setLocationCodeTengXunByJson(JSONObject object,BasLocation basLocation,String addressName,String cityCode,String parentCodeId,String pcastreet,int index){
+    public void setLocationCodeTengXunByJson(JSONObject object,BasLocation basLocation,String addressName,String cityCode,String parentCodeId,String pcastreet){
         String localName = object.get("fullname").toString() ;
         String locationId = object.get("id").toString() ;
         JSONObject latlngjson = object.getJSONObject("location") ;
         double lat = latlngjson.getDouble("lat") ;
         double lng = latlngjson.getDouble("lng") ;
         String locationCenter = lng+","+lat ;
-        if (index==0){
-            basLocation.setLocationId(locationId);
-        }
+        basLocation.setLocationId(locationId);
         basLocation.setLocationCenter(locationCenter);
         basLocation.setCreateTime(new Date());
         basLocation.setUpdateTime(new Date());

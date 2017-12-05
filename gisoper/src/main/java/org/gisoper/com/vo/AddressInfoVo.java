@@ -12,6 +12,15 @@ public class AddressInfoVo {
     private String addId ;
     private String detail ;
     private String type ;
+    private Boolean isDelete ;
+
+    public Boolean getDelete() {
+        return isDelete;
+    }
+
+    public void setDelete(Boolean delete) {
+        isDelete = delete;
+    }
 
     public String getProvince() {
         return province;

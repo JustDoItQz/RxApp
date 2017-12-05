@@ -2,6 +2,8 @@ package org.es.com.controller;
 
 import org.apache.commons.lang.StringUtils;
 import org.es.com.constant.Config;
+import org.es.com.index.EsSpaceSearchIndex;
+import org.es.com.index.SpaceSearchIndex;
 import org.es.com.spacesearch.ESSpaceSearch;
 import org.es.com.spacesearch.SpaceSearch;
 import org.es.com.utils.DateUtil;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.*;
 
@@ -20,7 +23,7 @@ import java.util.*;
 public class ServiceController {
 
     @RequestMapping(value = "/searchVehicleInfoByVehicleNum.do")
-    public ResponseEntity<String> searchVehicleInfoByVehicleNum(Map<Model,String> model, @RequestParam(value = "dataset",required = false,defaultValue = "kxtx.truckinfo")String dataset,@RequestParam(value = "keyword",required = true)String keyword)
+    public ResponseEntity<String> searchVehicleInfoByVehicleNum(Map<Model,String> model, @RequestParam(value = "dataset",required = false,defaultValue = "kxtx.history.geomery")String dataset,@RequestParam(value = "keyword",required = true)String keyword)
     {
         String result = null ;
         HttpHeaders headers = new HttpHeaders() ;
@@ -94,15 +97,5 @@ public class ServiceController {
         }
         return new ResponseEntity<String>(result.toString(),headers,HttpStatus.OK) ;
     }
-
-    @RequestMapping("/deleteWebsiteById.do")
-    public ResponseEntity<String> deleteWebsiteById(){
-        String result = null ;
-        HttpHeaders headers = new HttpHeaders() ;
-        headers.set("Content-Type","application/json;charset=utf-8");
-
-        return new ResponseEntity<String>(result,headers,HttpStatus.OK) ;
-    }
-
 
 }

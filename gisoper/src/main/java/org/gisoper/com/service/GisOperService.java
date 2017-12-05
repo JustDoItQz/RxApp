@@ -32,11 +32,11 @@ public class GisOperService {
                 addressCapa.put("url",ConstantUtils.ADDRESS_GEO+"?address="+addressInfoCapaVo.getDetail()+"&output=json&key="+SystemConstant.getGAODE_KEY()) ;
                 jsonArray.add(addressCapa) ;
             }
-            json.put("ops",jsonArray) ;
+            json.put("ops",jsonArray.toString()) ;
         }
 
         if (!json.isEmpty()){
-            String result = HttpclientUtil.postJson(url,json.toString()) ;
+            String result = HttpclientUtil.postJson(json.toString(),url) ;
             JSONArray arrayResult = JSONArray.fromObject(result) ;
             if (arrayResult!=null&&arrayResult.size()>0){
                 for (int i=0;i<arrayResult.size();i++){

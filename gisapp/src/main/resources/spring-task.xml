@@ -7,10 +7,35 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
 >
 
-    <!--每天23:55:00执行一次-->
-    <task:scheduled-tasks>
-        <task:scheduled ref="scheduleDataTask" method="workTask" cron="0 55 23 * * ?"/>
-    </task:scheduled-tasks>
     <context:component-scan base-package="org.*.com.service" />
+
+    <!--&lt;!&ndash;每天23:55:00执行一次&ndash;&gt;
+    <task:scheduled-tasks>
+        <task:scheduled ref="scheduleDataTask" method="workTask" cron="30 0 0 * * ?"/>
+    </task:scheduled-tasks>-->
+
+    <bean id="scheduleDataTask" class="org.gisoper.com.service.ScheduleDataTask"></bean>
+    <bean id="scheduleDataDetail"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 指定任务类 -->
+        <property name="targetObject" ref="scheduleDataTask" />
+        <!-- 指定任务执行的方法 -->
+        <property name="targetMethod" value="workTask" />
+    </bean>
+    <bean id="scheduleDataTrigger"
+          class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="scheduleDataDetail" />
+        <!-- 每10秒运行一次 -->
+        <property name="cronExpression" value="0/20 * * * * ?" />
+    </bean>
+
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <!-- <ref bean="exampleJobTrigger" /> -->
+                <ref bean="scheduleDataTrigger" />
+            </list>
+        </property>
+    </bean>
 
 </beans>

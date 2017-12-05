@@ -3,10 +3,7 @@ package org.gisoper.com.controller;
 import com.google.gson.reflect.TypeToken;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
-import org.common.com.utils.ESBOper;
-import org.common.com.utils.EncryptionUtil;
-import org.common.com.utils.RequestHeader;
-import org.common.com.utils.RequetESB;
+import org.common.com.utils.*;
 import org.gisoper.com.service.GisOperService;
 import org.gisoper.com.service.OpenGisService;
 import org.gisoper.com.vo.*;
@@ -18,11 +15,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 @Controller
 @RequestMapping("/openGis")
@@ -349,6 +348,53 @@ public class OpenGisController {
             obj = JSONObject.toBean(json,clazz) ;
         }
         return obj ;
+    }
+
+   /* @RequestMapping("/redisMethod")
+    @ResponseBody
+    private void executeRedis(){
+
+        controllerTime("time");
+
+    }
+    public  void controllerTime(String time){
+        String key = RedisOper.get(time) ;
+        if (key.equals(null)){
+            RedisOper.setExpires(time,10);
+            executeMethod() ;
+            System.out.println("----------------方法执行----------------"+ DateUtils.convert(new Date(),"yyyy年MM月dd日 HH时mm分ss秒"));
+        }
+    }*/
+
+    public void executeMethod(){
+        ExecutorService pool = Executors.newFixedThreadPool(3) ;
+        Runnable t1 = new Runnable() {
+            @Override
+            public void run() {
+                for (int i=0;i<50;i++){
+                    System.out.println("t1--i="+i);
+                }
+
+            }
+        } ;
+        pool.execute(t1);
+        try {
+            pool.awaitTermination(Long.MAX_VALUE, TimeUnit.MINUTES) ;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        Runnable t2 = new Runnable() {
+            @Override
+            public void run() {
+                for (int i=0;i<100;i++){
+                    System.out.println("t2-----i="+i);
+
+                }
+            }
+        } ;
+        pool.execute(t2);
+        pool.shutdown();
     }
 
 

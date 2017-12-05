@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
+@RequestMapping("/redis")
 public class RedisController {
 
     public static Logger logger = LoggerFactory.getLogger(RedisController.class) ;
@@ -42,7 +43,7 @@ public class RedisController {
     }
 
     @ResponseBody
-    @RequestMapping
+    @RequestMapping("/searchRedisInitData")
     public String searchRedisInitData(@RequestBody(required = false)String request){
         HashMap<String,Object> resultMap = new HashMap<String, Object>() ;
         try{

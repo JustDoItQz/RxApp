@@ -127,6 +127,21 @@ public class BasLocation implements Serializable {
      * @return
      */
 
+    private Integer page ;
+    /**
+     *  请求页面
+     * @param
+     * @return
+     */
+    private Integer pageSize ;
+
+    /**
+     *  页面大小
+     * @param
+     * @return
+     */
+
+
     private String parentLocationId ;
 
     public String getLocationLevel() {
@@ -296,4 +311,21 @@ public class BasLocation implements Serializable {
     public void setLatestTime(Date latestTime) {
         this.latestTime = latestTime;
     }
+
+    public Integer getPage() {
+        return page;
+    }
+
+    public void setPage(Integer page) {
+        this.page = page;
+    }
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
+    }
+
 }

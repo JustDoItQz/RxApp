@@ -1,5 +1,6 @@
 package org.common.com.redis;
 
+
 import com.google.gson.reflect.TypeToken;
 import org.common.com.utils.GsonUtil;
 import redis.clients.jedis.Jedis;
@@ -467,5 +468,5 @@ public class RedisOper {
 			setExpire(key, seconds);
 		}
 	}
-		
+
 }

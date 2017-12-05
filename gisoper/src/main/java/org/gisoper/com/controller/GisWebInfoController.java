@@ -1,5 +1,6 @@
 package org.gisoper.com.controller;
 
+import com.rabbitmq.client.ShutdownListener;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
 import org.gisoper.com.service.GisWebInfoService;
@@ -57,6 +58,8 @@ public class GisWebInfoController {
         }
         return JSONObject.fromObject(resultMap).toString() ;
     }
+
+
 
 
 }

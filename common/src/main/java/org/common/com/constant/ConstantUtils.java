@@ -41,14 +41,28 @@ public class ConstantUtils {
 
 
     /*高德相关请求地址*/
-
+    public static final String GAODE_URL = "http://restapi.amap.com" ;
     //高德行政区域查询
     public static final String ADDRESS_DISTRICT_URL_PREFIX = "http://restapi.amap.com/v3/config/district" ;
     //批量调用高德接口
-    public static final String ADDRESS_BATCH_URL_PREFIX = "http://restapi.amap.com/v3/config/batch" ;
+    public static final String ADDRESS_BATCH_URL_PREFIX = "http://restapi.amap.com/v3/batch" ;
+    //查询两点间的距离
     public static final String ADDRESS_DISTANCE_URL_PREFIX = "http://restapi.amap.com/v3/distance" ;
+    //地址查询
     public static final String ADDRESS_TO_LOCATION_URL_PREFIX = "http://restapi.amap.com/v3/geocode/regeo" ;
+    //逆地址查询
     public static final String ADDRESS_GEO = "/v3/geocode/geo" ;
+    public static final String ADDRESS_REGEO = "/v3/geocode/regeo" ;
+    //路径规划
+    public static final String ADDRESS_DIRECTION_PLAN = "/v3/direction/driving" ;
+    public static final String IP_URL = "/v3/ip" ;
+    //步行规划
+    public static final String ADDRESS_WALKING_PLAN = "/v3/direction/walking" ;
+    //公交路径规划
+    public static final String ADDRESS_TRANSIT_PLAN = "/v3/direction/transit" ;
+    public static final String GEOFENCE_URL = "/v4/geofence/meta" ;
+
+
 
     //腾讯地址库查询(街道)
     public static final String ADDRESS_TENGCENT_DISTRICT_URL_PREFIX = "http://apis.map.qq.com/ws/district/v1/getchildren" ;
@@ -110,8 +124,9 @@ public class ConstantUtils {
 
     /*redis储存信息*/
     public static final String vehicle_device_redis="vehicle_Device_" ;//设备信息
-
-    /*es标准接口*/
+    /*保存市内配该时间的车辆*/
+    public static final String TIME_DISTANCES="time_distances" ;
+     /*es标准接口*/
     public static final String VEHICLE_WEBSITE_DELETE_PREFIX = SystemConstant.getESB_URL()+"spacesearch/service/deleteWebsiteById.do" ;
 
 

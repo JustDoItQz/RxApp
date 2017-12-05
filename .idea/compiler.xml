@@ -17,7 +17,7 @@
       <module name="gisapp" target="1.5" />
       <module name="gisoper" target="1.6" />
       <module name="RxApp" target="1.5" />
-      <module name="spacesearch" target="1.5" />
+      <module name="spacesearch" target="1.6" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="org.gisoper.com.mapper.TaskMapper" >
+    <resultMap id="BaseResultMap" type="org.gisoper.com.vo.Task">
+        <id column="task" property="id" jdbcType="VARCHAR"></id>
+        <result column="version" property="version" jdbcType="INTEGER"/>
+        <result column="isRunning" property="isRunning" jdbcType="BIT"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        task,version,isRunning
+    </sql>
+    <select id="selectAllData" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        task
+    </select>
+
+    <update id="updateVersion" parameterType="org.gisoper.com.vo.Task" flushCache="true">
+        update task set version=version+1
+        where task=#{task,jdbcType=VARCHAR} AND version=#{version,jdbcType=INTEGER} AND isRunning=#{isRunning,jdbcType=BIT}
+    </update>
+
+</mapper>

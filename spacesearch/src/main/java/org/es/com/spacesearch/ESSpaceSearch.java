@@ -3,7 +3,6 @@ package org.es.com.spacesearch;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
-import org.apache.lucene.spatial3d.geom.GeoDistance;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.index.query.BoolQueryBuilder;
@@ -12,15 +11,18 @@ import org.elasticsearch.index.query.RangeQueryBuilder;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.sort.SortOrder;
 import org.es.com.constant.Config;
+import org.es.com.index.EsSpaceSearchIndex;
+import org.es.com.index.SpaceSearchIndex;
 import org.es.com.utils.ESClient;
 import org.slf4j.LoggerFactory;
+import java.util.UUID;
 
 public class ESSpaceSearch implements SpaceSearch{
 
     private static org.slf4j.Logger logger = LoggerFactory.getLogger(ESSpaceSearch.class) ;
 
     public String searchKeyword(String keyword, String dataset, int page, int pagesize) throws Exception {
-        SearchRequestBuilder builder = ESClient.getInstance().prepareSearch(dataset).setTypes(Config.INDEX_GEO_TYPE) ;
+        SearchRequestBuilder builder = ESClient.getInstance().prepareSearch(dataset).setTypes(Config.INDEX_PRODUCT_TYPE) ;
         JSONArray array = new JSONArray() ;
         if (StringUtils.isNotBlank(keyword)){
             JSONObject object = JSONObject.fromObject(keyword) ;
@@ -105,7 +107,7 @@ public class ESSpaceSearch implements SpaceSearch{
         return array.toString();
     }
     public String searchKeyword(String keyword, String dataset) throws Exception {
-        SearchRequestBuilder builder = ESClient.getInstance().prepareSearch(dataset).setTypes("") ;
+        SearchRequestBuilder builder = ESClient.getInstance().prepareSearch(dataset).setTypes("collection") ;
         JSONArray array = new JSONArray() ;
         if (StringUtils.isNotBlank(keyword)){
             JSONObject object = JSONObject.fromObject(keyword) ;
@@ -151,7 +153,7 @@ public class ESSpaceSearch implements SpaceSearch{
         query.must(QueryBuilders.commonTermsQuery((String)headerGeomo[0],(String)dataGemo[0])) ;
         builder.setQuery(query) ;
 
-        builder.setPostFilter(QueryBuilders.geoDistanceRangeQuery(Config.INDEX_GEOHASH,lat,lon).from("0km").to(distance+"km").geoDistance(org.elasticsearch.common.geo.GeoDistance.ARC)) ;
+        //builder.setPostFilter(QueryBuilders.geoDistanceRangeQuery(Config.INDEX_GEOHASH,lat,lon).from("0km").to(distance+"km").geoDistance(org.elasticsearch.common.geo.GeoDistance.ARC)) ;
         builder.setFrom(((Integer.parseInt(pageNo))-1)*Integer.parseInt(pageSize)) ;
         builder.setSize(Integer.parseInt(pageSize)) ;
         SearchResponse result = builder.execute().actionGet() ;
@@ -296,5 +298,23 @@ public class ESSpaceSearch implements SpaceSearch{
         }
         return array.toString();
     }
+
+/*    public void insertData(String dataset,String keyword){
+        try{
+            JSONObject object = JSONObject.fromObject(keyword) ;
+            Object[] header = object.keySet().toArray() ;
+            Object[] values = object.values().toArray() ;
+            EsSpaceSearchIndex searchIndex = new EsSpaceSearchIndex() ;
+            UUID uuid = UUID.randomUUID() ;
+            searchIndex.insert(dataset,uuid+"",header,values);
+            searchIndex.commit();
+            logger.info("ES插入数据成功！");
+        }catch (Exception e){
+            e.printStackTrace();
+            logger.error("ES插入数据失败！{}",e.getMessage());
+        }
+    }*/
+
+
 
 }

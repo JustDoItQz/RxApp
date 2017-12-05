@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 配置任务bean类 -->
+    <!--<bean id="quartzTask" class="com.lqy.spring.task.QuartzTask"></bean>-->
+
+    <!-- 配置方法映射工厂类 -->
+    <!-- MethodInvokingJobDetailFactoryBean不支持序列化 -->
+    <!-- <bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="quartzTask"></property>
+        <property name="targetMethod" value="startTask"></property>
+        <property name="concurrent" value="false"></property>
+        concurrent : false表示等上一个任务执行完后再开启新的任务
+    </bean> -->
+    <!-- 配置方法映射工厂类 -->
+    <bean id="jobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="org.gisoper.com.task.MyDetailQuartzJobBean"></property>
+        <property name="durability" value="true"></property>
+        <property name="requestsRecovery" value="true" />
+    </bean>
+
+    <!-- 配置任务高度的的时间/周期 -->
+    <bean id="jobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="jobDetail"></property>
+        <property name="cronExpression" value="0/10 * * * * ?"></property>
+        <property name="startDelay" value="30"></property>
+    </bean>
+
+    <bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="dataSource" ref="dataSource"></property>
+        <!--可选，QuartzScheduler 启动时更新己存在的Job，这样就不用每次修改targetObject后删除qrtz_job_details表对应记录了 -->
+        <property name="overwriteExistingJobs" value="true" />
+        <!--必须的，QuartzScheduler 延时启动，应用启动完后 QuartzScheduler 再启动 -->
+        <property name="startupDelay" value="30" />
+        <!-- 设置自动启动 -->
+        <property name="autoStartup" value="true" />
+        <property name="applicationContextSchedulerContextKey" value="applicationContextKey" />
+        <property name="configLocation" value="classpath:quartz.properties" />
+        <property name="triggers">
+            <list>
+                <ref bean="jobTrigger"/>
+            </list>
+        </property>
+    </bean>
+
+</beans>

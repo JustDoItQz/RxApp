@@ -1,130 +1,139 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd 
-		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd 
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
-<mvc:annotation-driven />
+    <mvc:annotation-driven/>
 
-	<!-- 将spring工具类注册进 -->
-	<bean class = "org.common.com.utils.SpringContextUtil" id = "springContextUtil" />
-	
-	<!-- 从properties文件获取配置信息 -->
-	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="order" value="1" />
-		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
-		<property name="ignoreResourceNotFound" value="true" />
-		<property name="locations">
-			<list>
-				<value>classpath:system.properties</value>
-				<value>classpath:jdbc.properties</value>
-				<value>classpath:log4j.properties</value>
-			</list>
-		</property>
-	</bean>
+    <!-- 将spring工具类注册进 -->
+    <bean class="org.common.com.utils.SpringContextUtil" id="springContextUtil"/>
 
-	<bean id="webPro" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-		<property name="locations">
-			<list>
-				<value>classpath:system.properties</value>
-				<value>classpath:jdbc.properties</value>
-				<value>classpath:log4j.properties</value>
-			</list>
-		</property>
-	</bean>
+    <!-- 从properties文件获取配置信息 -->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="order" value="1"/>
+        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>
+        <property name="ignoreResourceNotFound" value="true"/>
+        <property name="locations">
+            <list>
+                <value>classpath:system.properties</value>
+                <value>classpath:jdbc.properties</value>
+                <value>classpath:log4j.properties</value>
+            </list>
+        </property>
+    </bean>
 
-	<bean id="constant" class="org.common.com.constant.SystemConstant">
-		<property name="webProperties" ref="webPro" />
-	</bean>
-	
-	<!-- 配置数据源  destroy-method="close" -->
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-		<property name="driverClass" value="${jdbc.driver}"></property>
-		<property name="jdbcUrl" value="${jdbc.url}"></property>
-		<property name="user" value="${jdbc.username}"></property>
-		<property name="password" value="${jdbc.password}"></property>
-	</bean>
+    <bean id="webPro" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations">
+            <list>
+                <value>classpath:system.properties</value>
+                <value>classpath:jdbc.properties</value>
+                <value>classpath:log4j.properties</value>
+            </list>
+        </property>
+    </bean>
 
-	<!-- MyBatis集成Spring配置 -->
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<!-- 数据源 -->
-		<property name="dataSource" ref="dataSource" />
-		<!-- MyBatis配置 -->
-		<property name="configLocation" value="classpath:mybatis-config.xml" />
-		<!-- 映射文件扫描目录 -->
-		<property name="mapperLocations" value="classpath*:org/**/com/mapper/**/*.xml" />
-		<!-- 别名定义扫描目录 -->
-		<property name="typeAliasesPackage" value="org.*.com.vo" />
-	</bean>
+    <bean id="constant" class="org.common.com.constant.SystemConstant">
+        <property name="webProperties" ref="webPro"/>
+    </bean>
 
-	<!-- 注入mapper -->
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="org.*.com.mapper.**" />
-	</bean>
-	<bean id="myBatisDao" class="org.common.com.dao.MyBatisDao">
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
-	</bean>
+    <!-- 配置数据源  destroy-method="close" -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.driver}"></property>
+        <property name="jdbcUrl" value="${jdbc.url}"></property>
+        <property name="user" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+    </bean>
 
-	<!-- Spring MyBatis事务管理 -->
-	<bean id="transManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
+    <!-- MyBatis集成Spring配置 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!-- 数据源 -->
+        <property name="dataSource" ref="dataSource"/>
+        <!-- MyBatis配置 -->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <!-- 映射文件扫描目录 -->
+        <property name="mapperLocations" value="classpath*:org/**/com/mapper/**/*.xml"/>
+        <!-- 别名定义扫描目录 -->
+        <property name="typeAliasesPackage" value="org.*.com.vo"/>
+    </bean>
 
-	<!-- 配置Spring事务控制器 -->
-	<tx:advice id="userTxAdvice" transaction-manager="transManager">
-		<tx:attributes>
-			<tx:method name="delete*" propagation="REQUIRED" rollback-for="java.lang.RuntimeException" />
-			<tx:method name="insert*" propagation="REQUIRED" rollback-for="java.lang.RuntimeException" />
-			<tx:method name="update*" propagation="REQUIRED" rollback-for="java.lang.RuntimeException" />
-			<tx:method name="save*" propagation="REQUIRED" rollback-for="java.lang.RuntimeException" />
-			<tx:method name="add*" propagation="REQUIRED" rollback-for="java.lang.RuntimeException" />
-			<tx:method name="do*" propagation="REQUIRED" rollback-for="java.lang.RuntimeException" />
-			<tx:method name="modify*" propagation="REQUIRED" rollback-for="java.lang.RuntimeException" />
-			<tx:method name="reset*" propagation="REQUIRED" rollback-for="java.lang.RuntimeException" />
-			<tx:method name="find*" propagation="SUPPORTS" read-only="true" />
-			<tx:method name="get*" propagation="SUPPORTS" read-only="true" />
-			<tx:method name="select*" propagation="SUPPORTS" read-only="true" />
-			<tx:method name="query*" propagation="SUPPORTS" read-only="true" />
-		</tx:attributes>
-	</tx:advice>
+    <!-- 注入mapper -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="org.*.com.mapper.**"/>
+    </bean>
+    <bean id="myBatisDao" class="org.common.com.dao.MyBatisDao">
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+    </bean>
 
-	<!--把事务控制在Service层 -->
-	<aop:config>
-		<aop:pointcut id="pc" expression="execution(public * org.*.com.service..*.*(..))" />
-		<aop:advisor pointcut-ref="pc" advice-ref="userTxAdvice" />
-	</aop:config>
+    <!-- Spring MyBatis事务管理 -->
+    <bean id="transManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
 
-	<!-- 开启注解配置 -->
-	<context:annotation-config />
+    <!-- 配置Spring事务控制器 -->
+    <tx:advice id="userTxAdvice" transaction-manager="transManager">
+        <tx:attributes>
+            <tx:method name="delete*" propagation="REQUIRED" rollback-for="java.lang.RuntimeException"/>
+            <tx:method name="insert*" propagation="REQUIRED" rollback-for="java.lang.RuntimeException"/>
+            <tx:method name="update*" propagation="REQUIRED" rollback-for="java.lang.RuntimeException"/>
+            <tx:method name="save*" propagation="REQUIRED" rollback-for="java.lang.RuntimeException"/>
+            <tx:method name="add*" propagation="REQUIRED" rollback-for="java.lang.RuntimeException"/>
+            <tx:method name="do*" propagation="REQUIRED" rollback-for="java.lang.RuntimeException"/>
+            <tx:method name="modify*" propagation="REQUIRED" rollback-for="java.lang.RuntimeException"/>
+            <tx:method name="reset*" propagation="REQUIRED" rollback-for="java.lang.RuntimeException"/>
+            <tx:method name="find*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="get*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="select*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="query*" propagation="SUPPORTS" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
 
-	<!-- 包扫描 -->
-	<context:component-scan base-package="org.*.com" />
-	
-	<!--<mvc:interceptors>
-        &lt;!&ndash; 使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求 &ndash;&gt;
-       
+    <!--把事务控制在Service层 -->
+    <aop:config>
+        <aop:pointcut id="pc" expression="execution(public * org.*.com.service..*.*(..))"/>
+        <aop:advisor pointcut-ref="pc" advice-ref="userTxAdvice"/>
+    </aop:config>
+
+    <!-- 开启注解配置 -->
+    <context:annotation-config/>
+
+    <!-- 包扫描 -->
+    <context:component-scan base-package="org.*.com"/>
+
+    <!--页面拦截器-->
+    <mvc:interceptors>
+        <bean class="org.gisoper.com.interceptor.PageInterceptor">
+            <property name="allowPages">
+                <list>
+                    <value>.do</value>
+                    <value>.page</value>
+                </list>
+            </property>
+        </bean>
+    </mvc:interceptors>
+    <mvc:interceptors>
+
          <mvc:interceptor>
-         	  <mvc:mapping path="/**"/> 
-         	  <bean class="com.kxtx.utils.TimeInteceptor">
-         	  	<property name="notFilters"> 
-                   <list> 
-                      <value>.jsp</value> 
-                      <value>/dataError</value> 
+               <mvc:mapping path="/**"/>
+               <bean class="org.gisoper.com.interceptor.TimeInterceptor">
+                   <property name="notFilters">
+                   <list>
+                      <value>.jsp</value>
+                      <value>/dataError</value>
                       <value>/isRepeatSend</value>
                       <value>/js/</value>
-                    </list> 
-               </property> 
-         	 </bean>
+                    </list>
+               </property>
+              </bean>
          </mvc:interceptor>
-    </mvc:interceptors>-->
-	<!--加载容器-->
-	<bean class="org.gisoper.com.service.InstantiationTraceProcessor"/>
+    </mvc:interceptors>
+    <!--加载容器-->
+    <bean class="org.gisoper.com.service.InstantiationTraceProcessor"/>
 </beans>

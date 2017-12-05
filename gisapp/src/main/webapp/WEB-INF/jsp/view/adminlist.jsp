@@ -84,10 +84,12 @@
 	
 	<div class="menu_dropdown bk_2">
 		<dl id="menu-article">
-			<dt><i class="Hui-iconfont">&#xe616;</i> 资讯管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt><i class="Hui-iconfont">&#xe616;</i> 地址库管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a href="<%=pagepath%>articlelist.do" title="资讯管理">资讯管理</a></li>
+					<li><a href="<%=pagepath%>productbrand.do" title="地址库显示">地址库展示</a></li>
+					<li><a href="<%=pagepath%>productbrand.do" title="地址库修改">地址库修改</a></li>
+					<li><a href="<%=pagepath%>productbrand.do" title="地址库新增">地址库新增</a></li>
 				</ul>
 			</dd>
 		</dl>

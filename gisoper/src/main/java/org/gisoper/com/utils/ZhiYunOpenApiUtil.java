@@ -1,20 +1,8 @@
 package org.gisoper.com.utils;
 
-import cn.jiguang.common.utils.StringUtils;
-import com.ctfo.dexs.service.DataExchangeService;
-import net.sf.json.JSONObject;
-import org.common.com.constant.ConstantUtils;
-import org.common.com.constant.SystemConstant;
-import org.common.com.redis.RedisOper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.util.HashMap;
-import java.util.Map;
-
 public class ZhiYunOpenApiUtil {
 
-    private static Logger logger = LoggerFactory.getLogger(ZhiYunOpenApiUtil.class) ;
+    /*private static Logger logger = LoggerFactory.getLogger(ZhiYunOpenApiUtil.class) ;
 
     public static JSONObject dataExchangeService(String url,String param,String type,boolean islogin) throws Exception{
         return dataExchangeService(url,param,type,islogin) ;
@@ -38,7 +26,7 @@ public class ZhiYunOpenApiUtil {
             param = "TransCode.encode(param)" ;
             url = url+param+"?client_id="+getZhiYunOpenApiClientId(type) ;
             DataExchangeService des = new DataExchangeService(5000,5000) ;
-            String res = des.accessHttps(url,"POST");
+            String res = "";//des.accessHttps(url,"POST
             res = "TransCode.decode(res)" ;
             json = JSONObject.fromObject(res) ;
             if (json!=null){
@@ -134,6 +122,6 @@ public class ZhiYunOpenApiUtil {
             json = JSONObject.fromObject(res) ;
         }
         return json ;
-    }
+    }*/
 
 }
