@@ -3,13 +3,8 @@ package org.es.com.controller;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
-import org.elasticsearch.action.admin.indices.create.CreateIndexRequestBuilder;
-import org.elasticsearch.common.settings.Settings;
-import org.es.com.constant.Config;
-import org.es.com.index.EsSpaceSearchIndex;
-import org.es.com.index.SpaceSearchIndex;
-import org.es.com.utils.Constant;
-import org.es.com.utils.ESClient;
+import org.es.com.index.ESSpaceSearchIndex;
+import org.es.com.utils.Conf;
 import org.es.com.utils.GsonUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,19 +43,19 @@ public class SpaceSearchController {
         headers.set("Content-Type", "application/json;charset=utf-8");
         try {
             logger.info("请求参数：{}", GsonUtil.objToStr("geomData=" + geomData));
-            EsSpaceSearchIndex index = new EsSpaceSearchIndex();
+            ESSpaceSearchIndex index = new ESSpaceSearchIndex();
             JSONArray array = JSONArray.fromObject(geomData);
             for (Object o : array) {
                 JSONObject object = (JSONObject) o;
                 Object[] header = object.keySet().toArray();
                 Object[] data = object.values().toArray();
-                String id = object.getString(Config.IMPORT_GEO_ID);
-                String geom = object.getString(Config.INDEX_GEO_FIELDS);
+                String id = object.getString(Conf.IMPORT_GEO_ID);
+                String geom = object.getString(Conf.INDEX_GEO_FIELDS);
                 if (StringUtils.isNotEmpty(geom) && StringUtils.isNotEmpty(id)) {
                     index.importPointData(dataset, id, geom, header, data);
                 }
             }
-            index.commit();
+            index.commite();
             resultMap.put("msg", "插入数据成功！");
             resultMap.put("success", "true");
             logger.info("返回参数：{}", GsonUtil.objToStr(resultMap.toString()));
@@ -81,8 +76,8 @@ public class SpaceSearchController {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date fd = sdf.parse(fromdate);
             Date td = sdf.parse(toDate);
-            EsSpaceSearchIndex index = new EsSpaceSearchIndex();
-            index.deleteData(dataset, fd, td);
+            ESSpaceSearchIndex index = new ESSpaceSearchIndex();
+            //index.deleteData(dataset, fd, td);
             resultMap.put("msg", "删除数据成功！");
             resultMap.put("success", true);
 
@@ -109,8 +104,8 @@ public class SpaceSearchController {
         headers.set("Content-Type", "application/json;charset=utf-8");
         try {
             logger.info("请求参数：{}", GsonUtil.objToStr("fromDate:" + fromDate + ",toDate:" + toDate));
-            EsSpaceSearchIndex index = new EsSpaceSearchIndex();
-            index.deleteDataStr(dataset, fromDate, toDate);
+            ESSpaceSearchIndex index = new ESSpaceSearchIndex();
+            index.deleteDateStr(dataset, fromDate, toDate);
             resultMap.put("msg", "删除数据成功!");
             resultMap.put("success", true);
             logger.info("返回参数:{}", GsonUtil.objToStr(resultMap.toString()));
@@ -138,7 +133,7 @@ public class SpaceSearchController {
         headers.set("Content-Type", "application/json;charset=utf-8");
         try {
             logger.info("请求参数:{}", GsonUtil.objToStr("dataset:" + dataset + ",id=" + id));
-            EsSpaceSearchIndex index = new EsSpaceSearchIndex();
+            ESSpaceSearchIndex index = new ESSpaceSearchIndex();
             index.deleteData(dataset, id);
             resultMap.put("msg", "删除数据成功!");
             resultMap.put("success", true);
@@ -168,9 +163,9 @@ public class SpaceSearchController {
         headers.set("Content-Type", "application/json;charset=utf-8");
         try {
             logger.info("请求参数：{}", GsonUtil.objToStr("dataset:" + dataset + ",index:" + index));
-            EsSpaceSearchIndex searchIndex = new EsSpaceSearchIndex();
-            searchIndex.createIndex(index, dataset);
-            //searchIndex.commit();
+            ESSpaceSearchIndex searchIndex = new ESSpaceSearchIndex();
+            searchIndex.createIndex(index, dataset,"");
+            searchIndex.commite();
             resultMap.put("msg", "创建索引成功！");
             resultMap.put("success", true);
             logger.info("返回参数：{}", GsonUtil.objToStr(resultMap.toString()));
@@ -192,12 +187,12 @@ public class SpaceSearchController {
             headers.set("Content-Type", "application/json;charset=utf-8");
             try {
                 logger.info("请求参数：{}",GsonUtil.objToStr("dataset:"+dataset+",index:"+index+",id:"+id+",keyword:"+keyword));
-                EsSpaceSearchIndex esSpaceSearchIndex = new EsSpaceSearchIndex() ;
+                ESSpaceSearchIndex esSpaceSearchIndex = new ESSpaceSearchIndex() ;
                 JSONObject object = JSONObject.fromObject(keyword) ;
                 Object[] header = object.keySet().toArray();
                 Object[] data = object.values().toArray();
                 esSpaceSearchIndex.insert(dataset,id,header,data);
-                esSpaceSearchIndex.commit();
+                esSpaceSearchIndex.commite();
                 resultMap.put("msg","插入数据成功！") ;
                 resultMap.put("success",true) ;
                 logger.info("返回参数：{}",GsonUtil.objToStr(resultMap.toString()));

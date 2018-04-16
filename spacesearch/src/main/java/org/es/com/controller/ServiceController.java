@@ -1,11 +1,9 @@
 package org.es.com.controller;
 
 import org.apache.commons.lang.StringUtils;
-import org.es.com.constant.Config;
-import org.es.com.index.EsSpaceSearchIndex;
-import org.es.com.index.SpaceSearchIndex;
 import org.es.com.spacesearch.ESSpaceSearch;
 import org.es.com.spacesearch.SpaceSearch;
+import org.es.com.utils.Conf;
 import org.es.com.utils.DateUtil;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -14,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.*;
 
@@ -30,7 +27,7 @@ public class ServiceController {
         headers.set("Content-Type","application/json;chatset=utf-8");
         try{
             SpaceSearch search = new ESSpaceSearch() ;
-            result = search.searchKeyword(keyword,dataset) ;
+            result = search.searchKeyword(keyword,dataset,1,10) ;
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -54,7 +51,7 @@ public class ServiceController {
             if (StringUtils.isNotBlank(endTime)){
                 endTime = DateUtil.dateToStr(new Date(),"yyyy-MM-dd HH:mm:ss") ;
             }
-            result = search.searchKeyword(keyword,dataset, Config.INDEX_GEO_TIME,startTime,endTime,pageno,pagesizes) ;
+            result = search.searchKeyword(keyword,dataset, Conf.INDEX_GEO_TIME,"",startTime,endTime,pageno,pagesizes) ;
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -74,7 +71,7 @@ public class ServiceController {
                 list.add(array.toString()) ;
             }*/
             String[] list = keyword.split(",") ;
-            search.vehicleLastLocation(list,dataset) ;
+            //search.vehicleLastLocation(list,dataset) ;
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -91,7 +88,7 @@ public class ServiceController {
         headers.set("Content-Type","application/json;charset=utf-8");
         SpaceSearch search = new ESSpaceSearch() ;
         try{
-            result = search.searchGeometryNearBy(Double.parseDouble(lon),Double.parseDouble(lat),distance,keyword,dataset,page,pagesize) ;
+            //result = search.searchGeometryNearBy(Double.parseDouble(lon),Double.parseDouble(lat),distance,keyword,dataset,page,pagesize) ;
         }catch (Exception e){
             e.printStackTrace();
         }
