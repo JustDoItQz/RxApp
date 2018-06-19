@@ -1,0 +1,44 @@
+sftp 进入主机目录 cd /usr/local/src  
+     查看本地文件 lls
+
+     tomcat 挂载  docker run -d -p 8083:8080 -v /data/tomcat/webapps/:/usr/local/tomcat/webapps tomcat
+     docker run -d --name es1 -p 9200:9200 -p 9300:9300 -v /root/es_docker/es1.yml:/usr/share/elasticsearch/config/elasticsearch.yml -v /root/es_docker/esdata1:/usr/share/elasticsearch/data docker.elastic.co/elasticsearch/elasticsearch:2.4-alpine
+
+     docker run -d --name rabbitmq --restart=always -p 5673:5672 -p 25673:15672 docker.io/rabbitmq:3.6-management-alpine
+
+     docker run  -d -p 80:80 -v /nginx_docker:/usr/share/nginx/html -v /nginx_docker/logs:/var/log/nginx -v /nginx_docker/config/nginx.conf:/etc/nginx/nginx.conf   nginx
+
+     docker run --restart=always  -d -p 9200:9200 -p 9300:9300 -v /home/docker_workplace/docker_elasticsearch/data:/home/mount_workplace/mount_elasticsearch -v /home/docker_workplace/docker_elasticsearch/plugin:/home/mount_workplace/mount_elasticsearch/plugin -v /home/docker_workplace/docker_elasticsearch/config/elasticsearch.yml:/home/mount_workplace/mount_elasticsearch/config/elasticsearch.yml elasticsearch:2.4
+
+     docker inspect + container id 查看容器挂载详情
+
+     ik分词最终配置：
+
+	 安装ik插件：
+     ./plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v1.10.6/elasticsearch-analysis-ik-1.10.6.zip
+
+     docker运行命令：
+     docker run --restart=always  -d -p 9200:9200 -p 9300:9300 -v ~/docker_elasticsearch/data:/usr/share/es/data -v ~/docker_elasticsearch/plugin:/usr/share/es/plugins -v ~/docker_elasticsearch/config/:/usr/share/es/config/ elasticsearch:2.4
+
+     docker run -d -p 27017:27017 -v mongo_config_db:/docker_mongo/data/configdb -v mongo_db:/docker_mongo/data/db --name mongo docker.io/mongo:3.6
+
+     docker run --name myredis -p 6379 -d redis:alpine
+     docker run -p 3306:3306 --name mysql -v /home/docker_workplace/docker_mysql/conf/my.cnf:/etc/mysql/conf/my.cnf -v /home/docker_workplace/docker_mysql/logs:/etc/mysql/logs -v ~/home/docker_workplace/docker_mysql/data:/etc/mysql/data -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.5
+
+     docker run -p 3306:3306 --name mysql -v ~/docker_mysql/conf/my.cnf:/etc/mysql/my.cnf -v ~/docker_mysql/logs:/logs -v ~/docker_mysql/data:/mysql_data -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.5
+
+    docker run --restart=always  -d -p 9200:9200 -p 9300:9300 -v /home/docker_workplace/docker_elasticsearch/data:/usr/share/elasticsearch/data -v /home/docker_workplace/docker_elasticsearch/plugin:/usr/share/elasticsearch/plugins -v /home/docker_workplace/docker_elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml elasticsearch:2.4
+
+docker run -d --name es1 -p 9200:9200 -p 9300:9300 -v /home/docker_workplace/docker_elasticsearch/es1.yml:/usr/share/elasticsearchs/config/elasticsearch.yml -v /home/docker_workplace/docker_elasticsearch/esdata1:/usr/share/elasticsearchs/data docker.elastic.co/elasticsearch/elasticsearch:5.6.3
+
+docker run -d --name es2 --link es1:es1 -p 9201:9200 -p 9301:9300 -v /home/docker_workplace/docker_elasticsearch/es2.yml:/usr/share/elasticsearchs/configs/elasticsearch.yml -v /home/docker_workplace/docker_elasticsearch/esdata2:/usr/share/elasticsearchs/data docker.elastic.co/elasticsearch/elasticsearch:5.6.3
+
+docker run -d --name head -p 9100:9100 --network my-network -v  /home/docker_workplace/docker_elasticsearch/head/Gruntfile.js:/usr/src/app/Gruntfile.js -v  /home/docker_workplace/docker_elasticsearch/head/app.js:/usr/src/app/_site/app.js mobz/elasticsearch-head:5
+docker run -d --name es1 -p 9200:9200 -p 9300:9300 -v /root/es_docker/es1.yml:/usr/share/elasticsearchs/config/elasticsearch.yml -v /root/es_docker/esdata1:/usr/share/elasticsearchs/data docker.elastic.co/elasticsearch/elasticsearch:5.6.3
+docker run -d --name head -p 9100:9100 --network esdocker_esnet -v /root/es_docker/head/Gruntfile.js:/usr/src/app/Gruntfile.js -v /root/es_docker/head/app.js:/usr/src/app/_site/app.js mobz/elasticsearch-head:5
+
+docker run -d --name es2 --link es1:es1 -p 9201:9200 -p 9301:9300 -v /root/es_docker/es2.yml:/usr/share/elasticsearchs/config/elasticsearch.yml -v /root/es_docker/esdata2:/usr/share/elasticsearchs/data docker.elastic.co/elasticsearch/elasticsearch:5.6.3
+
+hadoop jar /usr/local/src/hadoop-2.6.0/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.6.0.jar pi 5 10
+ curl http://192.168.129.128:8983/solr/update?commitWithin=1000 -d '[{"id":"5","name":"王五","description":"王五"}]'
+ curl http://localhost:8983/solr/query -d '{query:"王五"}'
