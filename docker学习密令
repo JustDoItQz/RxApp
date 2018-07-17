@@ -41,4 +41,6 @@ docker run -d --name es2 --link es1:es1 -p 9201:9200 -p 9301:9300 -v /root/es_do
 
 hadoop jar /usr/local/src/hadoop-2.6.0/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.6.0.jar pi 5 10
  curl http://192.168.129.128:8983/solr/update?commitWithin=1000 -d '[{"id":"5","name":"王五","description":"王五"}]'
+ 
+ http://wenda.tianya.cn/question/2554178bdecc7db2
  curl http://localhost:8983/solr/query -d '{query:"王五"}'
