@@ -44,3 +44,4 @@ hadoop jar /usr/local/src/hadoop-2.6.0/share/hadoop/mapreduce/hadoop-mapreduce-e
  
  http://wenda.tianya.cn/question/2554178bdecc7db2
  curl http://localhost:8983/solr/query -d '{query:"王五"}'
+ https://blog.csdn.net/j903829182/article/details/78406778
