@@ -52,3 +52,6 @@ https://gitee.com/dalaoyang/springboot_learn.git
 https://github.com/timebusker/spring-boot/tree/master/spring-boot-3-logs
 https://github.com/L316476844/springbootexample.git
 %d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n
+
+
+docker rmi $(docker images | grep "none" | awk '{print $3}')
